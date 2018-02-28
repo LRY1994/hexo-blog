@@ -55,7 +55,14 @@ categories: [学习>>专题笔记]
 
 ## 编码和单元测试
 
-[针对github权限导致hexo部署失败的解决方案](https://www.cnblogs.com/xsilence/p/6001938.html)
+1. [针对github权限导致hexo部署失败的解决方案](https://www.cnblogs.com/xsilence/p/6001938.html)
+
+2.```hexo d```会覆盖掉github仓库的代码，试了创建两个分支，比较麻烦，放弃。
+
+建立两个仓库，一个放源代码，一个放生成代码。
+
+注意，生成代码需要放在master分支上，跟jekyll一样，生成代码的项目名字要取名为```username.github.io```
+
 ## 集成测试
 最终部署在github
 ## 软件维护
