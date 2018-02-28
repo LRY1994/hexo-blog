@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "f8app在window安装教程"
+date:   2017/11/21 
+categories: [学习>>专题笔记]
+---
+
+md写图片还要上传图床，太懒了
+
+http://blog.csdn.net/lry1994/article/details/78589019
+
