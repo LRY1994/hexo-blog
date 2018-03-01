@@ -3,7 +3,9 @@ layout: post
 title:  "读《穆斯林的葬礼》"
 date:   2017/11/29 
 img: "muslimsfuneral.png"
-categories: [生活>>阅读笔记]
+categories: 
+    - 生活 
+    - 阅读笔记
 ---
 ![cover](/images/book/muslimsfuneral.png)
 

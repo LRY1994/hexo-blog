@@ -2,7 +2,9 @@
 layout: post
 title:  "vue 一些需要注意的点"
 date:   2017/12/6 
-categories: [学习>>专题笔记]
+categories: 
+    - 学习 
+    - 专题笔记
 ---
 
 ## 技术栈

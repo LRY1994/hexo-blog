@@ -2,7 +2,9 @@
 layout: post
 title:  "原生DOM兼容特性总结"
 date:   2018/2/26
-categories: [学习>>专题笔记]
+categories: 
+    - 学习
+    - 专题笔记
 ---
 
 浏览器主要也就是IE有点独特，所以把IE重点区分开

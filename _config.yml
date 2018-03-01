@@ -7,14 +7,14 @@ title: 圆玉的博客
 subtitle:
 description: 林瑞玉的博客
 author: Ruiyu Lin 
-language:
+language: zh-hk
 timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://lry1994.github.io
 root: /
-permalink: :title
+permalink: :title.html
 permalink_defaults:
 
 # Directory
@@ -72,7 +72,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscapee
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

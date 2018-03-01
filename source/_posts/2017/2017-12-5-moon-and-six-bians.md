@@ -3,7 +3,9 @@ layout: post
 title:  "读《月亮与六便士》"
 date:   2017/12/5 
 img: "moon-and-six-bians.jpg"
-categories: [生活>>阅读笔记]
+categories: 
+    - 生活 
+    - 阅读笔记
 ---
 ![cover](/images/book/moon-and-six-bians.jpg)
 

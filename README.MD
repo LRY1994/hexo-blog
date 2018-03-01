@@ -81,3 +81,6 @@ hexo d
 
 
 
+{% for post in page.posts %}
+  //     {{ post_template.render(post, true) }}
+  //   {% endfor %}
