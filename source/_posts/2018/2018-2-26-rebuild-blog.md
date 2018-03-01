@@ -69,6 +69,41 @@ categories:
 3. 使用next主题的时候需要在_config.yml把``permalink: :title``中改成
 ``permalink: :title.html``
 不然点击文章的时候会出现下载框
+
+4. about页面需要自己创建，并且自己写。
+
+大容器页面布局默认_layout布局，在``theme/next/layout_layout.swig``中定义。
+
+全部页面都是默认page布局，在``theme/next/layout/page.swig``中定义。
+
+只有archive,tag,category页面不用创建，直接在``theme/next/layout/``对应名字文件里面写，即
+
+``theme/next/layout/archive.swig``
+
+``theme/next/layout/category.swig``
+
+``theme/next/layout/tag.swig``
+
+但是tag,category页面还需要多做一步：
+
+```
+$ cd your-hexo-site
+$ hexo new page tags
+```
+编辑刚新建的页面，将页面的类型设置为 tags ，主题将自动为这个页面显示标签云。页面内容如下：
+```
+title: 标签
+date: 2014-12-22 12:39:04
+type: "tags"
+```
+在菜单中添加链接。编辑 主题配置文件 ， 添加 tags 到 menu 中，如下:
+```
+menu:
+  home: /
+  archives: /archives
+  tags: /tags
+```
+
 ## 软件维护
 管理博客
 
