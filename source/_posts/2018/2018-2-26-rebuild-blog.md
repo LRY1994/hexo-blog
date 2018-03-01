@@ -103,7 +103,12 @@ menu:
   archives: /archives
   tags: /tags
 ```
-
+5. 换了主题重新部署，需要重新打包
+```
+hexo clean
+hexo g
+hexo d
+```
 ## 软件维护
 管理博客
 
