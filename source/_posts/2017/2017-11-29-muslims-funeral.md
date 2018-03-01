@@ -6,6 +6,8 @@ img: "muslimsfuneral.png"
 categories: 
     - 生活 
     - 阅读笔记
+tags:
+    - 文学
 ---
 ![cover](/images/book/muslimsfuneral.png)
 

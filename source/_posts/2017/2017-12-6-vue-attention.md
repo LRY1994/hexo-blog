@@ -5,6 +5,8 @@ date:   2017/12/6
 categories: 
     - 学习 
     - 专题笔记
+tags:
+    - vue
 ---
 
 ## 技术栈
