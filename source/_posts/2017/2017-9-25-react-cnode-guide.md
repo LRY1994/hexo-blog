@@ -344,7 +344,7 @@ Action
 
 16.高阶组件是一个函数（而不是组件）,原项目里面的GetNextPage.jx相当于IndexList的高阶组件，用到了get-next-page插件
 
-![用于下拉自动加载数据get-next-page插件](https://segmentfault.com/n/1330000011305070)
+[用于下拉自动加载数据get-next-page插件](https://segmentfault.com/n/1330000011305070)
 
 17.组件必须大写字母开头，不然会当做html的标签
 
@@ -509,9 +509,7 @@ Something Missing?
 
 ### 部署
 
-参考 
-
-[部署方法](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#deployment)
+参考 [部署方法](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#deployment)
 
     >npm install -g serve
     >serve -s build

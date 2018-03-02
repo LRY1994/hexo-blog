@@ -49,6 +49,7 @@ categories:
     - 旅游攻略 （喜欢旅游，但不可以经常旅游，所以很珍惜每一次，都想把它记录下来）
 - 其他
     - 社区账号（比较常用segmentfault/weibo/V2EX）
+    - 聊天框
 
 ## 概要设计
 输出原型图
@@ -61,55 +62,57 @@ categories:
 最终部署在github
 
 1. Permission denied (publickey)错误
-解决方法
-[针对github权限导致hexo部署失败的解决方案](https://www.cnblogs.com/xsilence/p/6001938.html)
+    解决方法
+    [针对github权限导致hexo部署失败的解决方案](https://www.cnblogs.com/xsilence/p/6001938.html)
 
-2. 和jekyll不同，``hexo d``会覆盖掉github仓库的代码，试了创建两个分支，比较麻烦，放弃。建立两个仓库，一个放源代码，一个放生成代码。注意，生成代码需要放在master分支上，跟jekyll一样，生成代码的项目名字要取名为``username.github.io``
+2. 和jekyll不同，``hexo d``会覆盖掉github仓库的代码，试了创建两个分支，比较麻烦，放弃。建立两个仓库，一个放源代码，一个放生成代    码。注意，生成代码需要放在master分支上，跟jekyll一样，生成代码的项目名字要取名为``username.github.io``
 
 3. 使用next主题的时候需要在_config.yml把``permalink: :title``中改成
-``permalink: :title.html``
-不然点击文章的时候会出现下载框
+    ``permalink: :title.html``
+    不然点击文章的时候会出现下载框
 
 4. about页面需要自己创建，并且自己写。
 
-大容器页面布局默认_layout布局，在``theme/next/layout_layout.swig``中定义。
+    大容器页面布局默认_layout布局，在``theme/next/layout_layout.swig``中定义。
 
-全部页面都是默认page布局，在``theme/next/layout/page.swig``中定义。
+    全部页面都是默认page布局，在``theme/next/layout/page.swig``中定义。
 
-只有archive,tag,category页面不用创建，直接在``theme/next/layout/``对应名字文件里面写，即
+    只有archive,tag,category页面不用创建，直接在``theme/next/layout/``对应名字文件里面写，即
 
-``theme/next/layout/archive.swig``
+    ``theme/next/layout/archive.swig``
 
-``theme/next/layout/category.swig``
+    ``theme/next/layout/category.swig``
 
-``theme/next/layout/tag.swig``
+    ``theme/next/layout/tag.swig``
 
-但是tag,category页面还需要多做一步：
+    但是tag,category页面还需要多做一步：
 
-```
-$ cd your-hexo-site
-$ hexo new page tags
-```
-编辑刚新建的页面，将页面的类型设置为 tags ，主题将自动为这个页面显示标签云。页面内容如下：
-```
-title: 标签
-date: 2014-12-22 12:39:04
-type: "tags"
-```
-在菜单中添加链接。编辑 主题配置文件 ， 添加 tags 到 menu 中，如下:
-```
-menu:
-  home: /
-  archives: /archives
-  tags: /tags
-```
+    ```
+    $ cd your-hexo-site
+    $ hexo new page tags
+    ```
+    编辑刚新建的页面，将页面的类型设置为 tags ，主题将自动为这个页面显示标签云。页面内容如下：
+    ```
+    title: 标签
+    date: 2014-12-22 12:39:04
+    type: "tags"
+    ```
+    在菜单中添加链接。编辑 主题配置文件 ， 添加 tags 到 menu 中，如下:
+    ```
+    menu:
+    home: /
+    archives: /archives
+    tags: /tags
+    ```
+
 5. 换了主题重新部署，需要重新打包
-```
-hexo clean
-hexo g
-hexo d
-```
-这个需要一段时间githubPage才会更新
+    ```
+    hexo clean
+    hexo g
+    hexo d
+    ```
+    这个需要一段时间githubPage才会更新
+    
 ## 软件维护
 管理博客
 

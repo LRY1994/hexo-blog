@@ -77,12 +77,12 @@ PNG可以使用一些开源压缩软件来压缩，比图24色变为8色、去�
 
 性能优化
 
-![性能优化](https://raw.githubusercontent.com/LRY1994/lry1994.github.io/master/img/content/performance-optimize.png)
+![性能优化](performance-optimize.png)
 
 图片适配
 
-![图片适配](https://raw.githubusercontent.com/LRY1994/lry1994.github.io/master/img/content/pic-adapt.jpg)
+![图片适配](pic-adapt.jpg)
 
 aria无障碍文本
-![aria](https://raw.githubusercontent.com/LRY1994/lry1994.github.io/master/img/content/aria.png)
+![aria](aria.png)
 

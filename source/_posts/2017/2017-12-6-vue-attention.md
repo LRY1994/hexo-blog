@@ -53,118 +53,126 @@ tags:
 * 计算属性是基于它们的依赖进行缓存的。计算属性只有在它的相关依赖发生改变时才会重新求值。
 * 当 v-bind:style 使用需要添加浏览器引擎前缀的 CSS 属性时，如 transform，Vue.js 会自动侦测并添加相应的前缀。
 * 表单元素不要复用它们，只需添加一个具有唯一值的 key 属性即可
-* v-show 不支持 ```<template>``` 元素， v-else也不支持
+* v-show 不支持 ``<template>``元素， v-else也不支持
 * v-for 具有比 v-if 更高的优先级。
 它能跟踪每个节点的身份，从而重用和重新排序现有元素，你需要为每项提供一个唯一 key 属性。
 
-```html
+``html
 <div v-for="item in items" :key="item.id">
   <!-- 内容 -->
 </div>
-```
+``
 
 * 建议尽可能在使用 v-for 时提供 key，除非遍历输出的 DOM 内容非常简单，或者是刻意依赖默认行为以获取性能上的提升。
 
   2.2.0+ 的版本里，当在组件中使用 v-for 时，key 现在是必须的。
 
 * vue数组的变异方法，：push()pop()shift()unshift()splice()sort()reverse()
-非变异 (non-mutating method) 方法，例如：filter(), concat() 和 slice()
+    非变异 (non-mutating method) 方法，例如：filter(), concat() 和 slice()
 
 * Vue 不能检测以下变动的数组：
-1.	当你利用索引直接设置一个项时，例如：```vm.items[indexOfItem] = newValue```
-解决方法
+    1.	当你利用索引直接设置一个项时，例如：``vm.items[indexOfItem] = newValue``
+    解决方法
 
-```javascript
-// Vue.set
-Vue.set(example1.items, indexOfItem, newValue)
-或者
-// Array.prototype.splice
-example1.items.splice(indexOfItem, 1, newValue)
-```
+    ``javascript
+    // Vue.set
+    Vue.set(example1.items, indexOfItem, newValue)
+    或者
+    // Array.prototype.splice
+    example1.items.splice(indexOfItem, 1, newValue)
+    ``
 
-2.	当你修改数组的长度时，例如：```vm.items.length = newLength```
-解决方法
+    2.	当你修改数组的长度时，例如：``vm.items.length = newLength``
+    解决方法
 
-``` example1.items.splice(newLength) ```
+    `` example1.items.splice(newLength) ``
 
-* 对于已经创建的实例，Vue 不能动态添加根级别的响应式属性。但是，可以使用 
-```Vue.set(object, key, value) ```方法向嵌套对象添加响应式属性。
-还可以使用``` this.$set ```实例方法，或者
+    * 对于已经创建的实例，Vue 不能动态添加根级别的响应式属性。但是，可以使用 
+    ``Vue.set(object, key, value) ``方法向嵌套对象添加响应式属性。
+    还可以使用`` this.$set ``实例方法，或者
 
-```javascript
-
-this.userProfile = Object.assign({}, this.userProfile, {
-  age: 27,
-  favoriteColor: 'Vue Green'
-})
-
-```
+    ``javascript
+    this.userProfile = Object.assign({}, this.userProfile, {
+      age: 27,
+      favoriteColor: 'Vue Green'
+    })
+    ``
 
 * 事件修饰符。
 
-.stop .prevent. capture .self .once .native
+  .stop .prevent. capture .self .once .native
 
-```@click.prevent.self ```会阻止所有的点击，而
-```@click.self.prevent``` 只会阻止对元素自身的点击。
+  ``@click.prevent.self ``会阻止所有的点击，而
+  ``@click.self.prevent`` 只会阻止对元素自身的点击。
 
 
 * 构造 Vue 实例时传入的各种选项大多数都可以在组件里使用。只有一个例外：data 必须是函数。
 
 * Vue 实例指的是 new Vue
 
-组件指的是 Vue.component,或者new Vue里面的component
+  组件指的是 Vue.component,或者new Vue里面的component
 
 * 组件实例的作用域是孤立的
 
 * 当使用的不是字符串模板时，camelCase (驼峰式命名) 的 prop 需要转换为相对应的 kebab-case (短横线分隔式命名)
 
 * 初学者常犯的一个错误是使用字面量语法传递数值：
-```html
-<!-- 传递了一个字符串 "1" -->
-<comp some-prop="1"></comp>
-```
-因为它是一个字面量 prop，它的值是字符串 "1" 而不是一个数值。
->>如果想传递一个真正的 JavaScript 数值，则需要使用 v-bind，从而让它的值被当作 JavaScript 表达式计算：
-```html
-<!-- 传递真正的数值 -->
-<comp v-bind:some-prop="1"></comp>
-```
+  ``html
+  <!-- 传递了一个字符串 "1" -->
+  <comp some-prop="1"></comp>
+  ``
+  因为它是一个字面量 prop，它的值是字符串 "1" 而不是一个数值。
+  >>如果想传递一个真正的 JavaScript 数值，则需要使用 v-bind，从而让它的值被当作 JavaScript 表达式计算：
+  ``html
+  <!-- 传递真正的数值 -->
+  <comp v-bind:some-prop="1"></comp>
+  ``
 
-* 每次父组件更新时，子组件的所有 prop 都会更新为最新值。这意味着你不应该在子组件内部改变 prop。注意在 JavaScript 中对象和数组是引用类型，指向同一个内存空间，
->>如果 prop 是一个对象或数组，在子组件内部改变它会影响父组件的状态。
+* 每次父组件更新时，子组件的所有 prop 都会更新为最新值。这意味着你不应该在子组件内部改变 prop。注意在 JavaScript 中对象和数组是    引用类型，指向同一个内存空间，
+    >>如果 prop 是一个对象或数组，在子组件内部改变它会影响父组件的状态。
 
 * .sync 修饰符对一个 prop 进行“双向绑定”.默认Prop是单向绑定的。
 
-从 2.3.0 起我们重新引入了 .sync 修饰符，但是这次它只是作为一个编译时的语法糖存在。它会被扩展为一个自动更新父组件属性的 v-on 监听器。
-如下代码
-```
-<comp :foo.sync="bar"></comp>
-```
-会被扩展为：
-```
-<comp :foo="bar" @update:foo="val => bar = val"></comp>
-```
-当子组件需要更新 foo 的值时，它需要显式地触发一个更新事件：
-```
-this.$emit('update:foo', newValue)
-```
+  从 2.3.0 起我们重新引入了 .sync 修饰符，但是这次它只是作为一个编译时的语法糖存在。它会被扩展为一个自动更新父组件属性的 v-on 监听器。
+  如下代码
+  ``
+  <comp :foo.sync="bar"></comp>
+  ``
+  会被扩展为：
+  ``
+  <comp :foo="bar" @update:foo="val => bar = val"></comp>
+  ``
+  当子组件需要更新 foo 的值时，它需要显式地触发一个更新事件：
+  ``
+  this.$emit('update:foo', newValue)
+  ``
 
 ## Vuex
- Vuex 的 store 中的状态是响应式的，那么当我们变更状态时，监视状态的 Vue 组件也会自动更新。这也意味着 Vuex 中的 mutation 也需要与使用 Vue 一样遵守一些注意事项：
-1.	最好提前在你的 store 中初始化好所有所需属性。
-2.	当需要在对象上添加新属性时，你应该使用
+  Vuex 的 store 中的状态是响应式的，那么当我们变更状态时，监视状态的 Vue 组件也会自动更新。这也意味着 Vuex 中的 mutation 也需要与使用 Vue 一样遵守一些注意事项：
+  1.	最好提前在你的 store 中初始化好所有所需属性。
+  2.	当需要在对象上添加新属性时，你应该使用
 
-```Vue.set(obj, 'newProp', 123)```, 
+  ``Vue.set(obj, 'newProp', 123)``, 
 
-或者以新对象替换老对象。例如，利用 stage-3 的对象展开运算符我们可以这样写：
+  或者以新对象替换老对象。例如，利用 stage-3 的对象展开运算符我们可以这样写：
 
-```state.obj = { ...state.obj, newProp: 123 }```
+  ``state.obj = { ...state.obj, newProp: 123 }``
 
+  mutation 必须是同步函数
 
- mutation 必须是同步函数
+  store.dispatch 可以处理被触发的 action 的处理函数返回的 Promise，并且 store.dispatch 仍旧返回 Promise
 
+  在 Vuex 模块化中，state 是唯一会根据组合时模块的别名来添加层级的，后面的 getters、mutations 以及 actions 都是直接合并在 store 下。
 
-store.dispatch 可以处理被触发的 action 的处理函数返回的 Promise，并且 store.dispatch 仍旧返回 Promise
+  ``getter({state,getters,rootState})``由于 getters 不区分模块，所以不同模块中的 getters 如果重名，Vuex 会报出``` 'duplicate getter key: [重复的getter名]'``` 错误。
+
+  ``mutations(state)`` mutation 的回调函数中只接收唯一的参数——当前模块的 state。mutations 与 getters 类似，不同模块的 mutation 均可以通过 ```store.commit``` 直接触发。
+
+  ``action({state,rootState, getters, mutations, actions})``与 mutations 类似，不同模块的 actions 均可以通过 ```store.dispatch``` 直接触发.
+
+  在 action 中可以通过 context.commit 跨模块调用 mutation，同时一个模块的 action 也可以调用其他模块的 action
+
+  同样的，当不同模块中有同名 action 时，通过 store.dispatch 调用，会依次触发所有同名 actions。
 
 ## ｂａｂｅｌ
 transform-runtime最大的作用主要有几下几点：
@@ -172,80 +180,52 @@ transform-runtime最大的作用主要有几下几点：
 1. 解决编译中产生的重复的工具函数，减小代码体积
 
 2. 只支持新的Javascript语法扩展，比如`Set`，`Map`...不支持
-```Object.assign，"foobar".includes("foo")```
-这些对于API的扩展，所以需要使用这些新的API功能需要引入```babel-polyfill```
+    ``Object.assign，"foobar".includes("foo")``
+    这些对于API的扩展，所以需要使用这些新的API功能需要引入``babel-polyfill``
 
-```"presets": ["env"]``` 表示```babel-preset-env```
+    ``"presets": ["env"]`` 表示``babel-preset-env``
 
-每年每个 preset 只编译当年批准的内容。 而 babel-preset-env 相当于 es2015 ，es2016 ，es2017 及最新版本。
-
-```Polyfill```的准确意思为：用于实现浏览器并不支持的原生API的代码。
-例如，querySelectorAll是很多现代浏览器都支持的原生Web API，但是有些古老的浏览器并不支持，那么假设有人写了库，只要用了这个库， 你就可以在古老的浏览器里面使用```document.querySelectorAll```，使用方法跟现代浏览器原生API无异。那么这个库就可以称为```Polyfill```或者```Polyfiller```。
-好，那么问题就来了。jQuery是不是一个Polyfill?答案是No。因为它并不是实现一些标准的原生API，而是封装了自己API。一个Polyfill是抹平新老浏览器 标准原生API 之间的差距的一种封装，而不是实现自己的API。
-
-
-在 Vuex 模块化中，state 是唯一会根据组合时模块的别名来添加层级的，后面的 getters、mutations 以及 actions 都是直接合并在 store 下。
-
-```getter({state,getters,rootState})```由于 getters 不区分模块，所以不同模块中的 getters 如果重名，Vuex 会报出``` 'duplicate getter key: [重复的getter名]'``` 错误。
-
-```mutations(state)``` mutation 的回调函数中只接收唯一的参数——当前模块的 state。mutations 与 getters 类似，不同模块的 mutation 均可以通过 ```store.commit``` 直接触发。
-
-```action({state,rootState, getters, mutations, actions})```与 mutations 类似，不同模块的 actions 均可以通过 ```store.dispatch``` 直接触发.
-
-在 action 中可以通过 context.commit 跨模块调用 mutation，同时一个模块的 action 也可以调用其他模块的 action
-
-同样的，当不同模块中有同名 action 时，通过 store.dispatch 调用，会依次触发所有同名 actions。
+    每年每个 preset 只编译当年批准的内容。 而 babel-preset-env 相当于 es2015 ，es2016 ，es2017 及最新版本。
 
 ## ｖｕｅ－ｌｏａｄｅｒ
-使用 scoped 后，父组件的样式将不会渗透到子组件中。
+  使用 scoped 后，父组件的样式将不会渗透到子组件中。
 
-通过 v-html 创建的 DOM 内容不受作用域内的样式影响，但是你仍然可以通过深度作用选择器来为他们设置样式
+  通过 v-html 创建的 DOM 内容不受作用域内的样式影响，但是你仍然可以通过深度作用选择器来为他们设置样式
 
-```sass-resources-loader```:在每个组件里加载一个设置文件，而无需每次都将其显式导入 
+  ```sass-resources-loader```:在每个组件里加载一个设置文件，而无需每次都将其显式导入 
 
-Vue 组件中的所有 JavaScript 默认使用 ```babel-loader```处理
+  Vue 组件中的所有 JavaScript 默认使用 ```babel-loader```处理
 
-```file-loader``` 可以指定要复制和放置资源文件的位置，以及如何使用版本哈希命名以获得更好的缓存此外，这意味着 你可以就近管理图片文件，可以使用相对路径而不用担心布署时URL问题。使用正确的配置，Webpack 将会在打包输出中自动重写文件路径为正确的URL。
+  ```file-loader``` 可以指定要复制和放置资源文件的位置，以及如何使用版本哈希命名以获得更好的缓存此外，这意味着 你可以就近管理图片文件，可以使用相对路径而不用担心布署时URL问题。使用正确的配置，Webpack 将会在打包输出中自动重写文件路径为正确的URL。
 
-```url-loader``` 允许你有条件将文件转换为内联的 ```base-64 URL``` (当文件小于给定的阈值)，这会减少小文件的 HTTP 请求。如果文件大于该阈值，会自动的交给 file-loader 处理。
+  ```url-loader``` 允许你有条件将文件转换为内联的 ```base-64 URL``` (当文件小于给定的阈值)，这会减少小文件的 HTTP 请求。如果文件大于该阈值，会自动的交给 file-loader 处理。
 
-对于 css, 由```vue-style-loader``` 返回的结果通常不太有用。使用 ```postcss ```插件将会是更好的选择。
+  对于 css, 由```vue-style-loader``` 返回的结果通常不太有用。使用 ```postcss ```插件将会是更好的选择。
 
-```extract-text-webpack-plugin```:Extract text from a bundle, or bundles, into a separate file.
+  ```extract-text-webpack-plugin```:Extract text from a bundle, or bundles, into a separate file.
 
-```javascript
-loader: 'vue-loader',
-        options: {
-          extractCSS: true
-        }
-```
-```HtmlWebpackPlugin```： 使得webpack入口点生成的文件都会在生成的HTML文件中的script标签内。
-```ExtractTextPlugin```提取CSS，然后包含在HTML head中的link标签内。
+      ``javascript
+      loader: 'vue-loader',
+              options: {
+                extractCSS: true
+              }
+      ``
+``HtmlWebpackPlugin``： 使得webpack入口点生成的文件都会在生成的HTML文件中的script标签内。
+``ExtractTextPlugin``提取CSS，然后包含在HTML head中的link标签内。
  
 ## 完整的导航解析流程 vue-router
-1.	导航被触发。
-2.	在失活的组件里调用beforeRouteLeave 。
-3.	调用全局的 beforeEach 守卫。
-4.	在重用的组件里调用 beforeRouteUpdate 守卫 (2.2+)。
-5.	在路由配置里调用 beforeEnter。
-6.	解析异步路由组件。
-7.	在被激活的组件里调用 beforeRouteEnter。
-8.	调用全局的 beforeResolve 守卫 (2.5+)。
-9.	导航被确认。
-10.	调用全局的 afterEach 钩子。
-11.	触发 DOM 更新。
-12.	用创建好的实例调用 beforeRouteEnter 守卫中传给 next 的回调函数。
- 
+  1.	导航被触发。
+  2.	在失活的组件里调用beforeRouteLeave 。
+  3.	调用全局的 beforeEach 守卫。
+  4.	在重用的组件里调用 beforeRouteUpdate 守卫 (2.2+)。
+  5.	在路由配置里调用 beforeEnter。
+  6.	解析异步路由组件。
+  7.	在被激活的组件里调用 beforeRouteEnter。
+  8.	调用全局的 beforeResolve 守卫 (2.5+)。
+  9.	导航被确认。
+  10.	调用全局的 afterEach 钩子。
+  11.	触发 DOM 更新。
+  12.	用创建好的实例调用 beforeRouteEnter 守卫中传给 next 的回调函数。
 
-## 遇到的问题
-1. 详解vue2父组件传递props异步数据到子组件的问题（http://www.jb51.net/article/117447.htm）
-解决方法：使用v-if可以解决报错问题，和created为空问题
-2. 在没有全部渲染时，不显示任何元素，自带的html文字也不要显示，只显示载入中的动画；等全部渲染完成后，载入中动画消失，完整的页面出现。
-解决方法：html标签加上v-cloak，样式里面
-```
-[v-cloak] {
-    display: none;
-}
-```
 
 
