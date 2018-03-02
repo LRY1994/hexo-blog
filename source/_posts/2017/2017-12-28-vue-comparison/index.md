@@ -37,9 +37,9 @@ vue 与angualr1 ,react 不同体验整理
 # React与vue比较
 ### 生命周期
 #### React生命周期
-![react生命周期](react-life.png)
+![react生命周期](./react-life.png)
 #### vue生命周期
-![vue生命周期](vue-life.png)
+![vue生命周期](./vue-life.png)
 
 
 ### 总结
@@ -253,9 +253,9 @@ export default {
 
 ### 6-调用链
 #### React-redux调用链
-![React-redux调用链](react-redux-lian.png)
+![React-redux调用链](./react-redux-lian.png)
 #### Vuex调用链
-![vuex调用链](vuex-lian.png)
+![vuex调用链](./vuex-lian.png)
 
 ### 7-总结
 #### React-redux
