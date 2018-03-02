@@ -42,7 +42,8 @@ vue 与angualr1 ,react 不同体验整理
 
 
 #### vue生命周期
-![vue生命周期](2017-12-28-vue-comparison/vue-life.png)
+{% asset_img vue-life.png vue生命周期 %}
+
 
 
 ### 总结

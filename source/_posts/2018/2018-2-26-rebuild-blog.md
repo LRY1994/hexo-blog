@@ -128,9 +128,10 @@ categories:
     ```post_asset_folder: true``
     2. 安装
     
-        ```npm install https://github.com/CodeFalling/hexo-asset-image --save```
+    ```npm install https://github.com/CodeFalling/hexo-asset-image --save```
 
     在md文件中插入图片时只需写```![](./pic1.png)```
+    {% asset_img 图片文件名 [title] %}这样可以插入文章资源目录下的图片
     
 ## 软件维护
 管理博客
