@@ -42,6 +42,7 @@ vue 与angualr1 ,react 不同体验整理
 
 
 #### vue生命周期
+
 {% asset_img vue-life.png vue生命周期 %}
 
 
