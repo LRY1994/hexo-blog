@@ -113,6 +113,25 @@ categories:
     ```
     这个需要一段时间githubPage才会更新
     
+6. 写文章的时候要插入图片
+    ```
+        _posts
+
+            |- post1.md
+
+            |_ post1
+
+                |- pic1.png
+    ```
+    需要两步
+    1. 首先确认_config.yml中有：
+    ```post_asset_folder: true``
+    2. 安装
+    
+        ```npm install https://github.com/CodeFalling/hexo-asset-image --save```
+
+    在md文件中插入图片时只需写```![](./pic1.png)```
+    
 ## 软件维护
 管理博客
 
