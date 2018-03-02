@@ -109,6 +109,7 @@ hexo clean
 hexo g
 hexo d
 ```
+这个需要一段时间githubPage才会更新
 ## 软件维护
 管理博客
 
