@@ -37,13 +37,13 @@ vue 与angualr1 ,react 不同体验整理
 # React与vue比较
 ### 生命周期
 #### React生命周期
+![react生命周期](./react-life.png)
 
-{% asset_img react-life.png react生命周期 %}
 
 
 #### vue生命周期
+![vue生命周期](./vue-life.png)
 
-{% asset_img vue-life.png vue生命周期 %}
 
 
 
@@ -89,7 +89,7 @@ vue 与angualr1 ,react 不同体验整理
 5. connect(mapStateToProps, mapDispatchToProps)（组件）
 6. 组件里面使用this.props.（action.type）(action.data)
 
-![react-redux使用流程](2017-12-28-vue-comparison/react-redux-process.png)
+![react-redux使用流程](./react-redux-process.png)
 
 #### vuex
 1. 写好store和不同模块的state,mutations,getters,actions 
@@ -258,9 +258,9 @@ export default {
 
 ### 6-调用链
 #### React-redux调用链
-![React-redux调用链](2017-12-28-vue-comparison/react-redux-lian.png)
+![React-redux调用链](./react-redux-lian.png)
 #### Vuex调用链
-![vuex调用链](2017-12-28-vue-comparison/vuex-lian.png)
+![vuex调用链](./vuex-lian.png)
 
 ### 7-总结
 #### React-redux

@@ -113,7 +113,7 @@ categories:
     ```
     这个需要一段时间githubPage才会更新
     
-6. 写文章的时候要插入图片
+6. 写文章的时候要插入图片 按照[官方说法](https://hexo.io/zh-cn/docs/asset-folders.html)一点卵用都没有
     ```
         _posts
 
@@ -123,15 +123,16 @@ categories:
 
                 |- pic1.png
     ```
-    需要两步
     1. 首先确认_config.yml中有：
     ```post_asset_folder: true``
     2. 安装
     
     ```npm install https://github.com/CodeFalling/hexo-asset-image --save```
 
-    在md文件中插入图片时只需写```![](./pic1.png)```
     {% asset_img 图片文件名 [title] %}这样可以插入文章资源目录下的图片
+
+    我的解决方法：``hexo g``生成public文件夹之后，把图片复制到改目录下，再``hexo d``
+
     
 ## 软件维护
 管理博客
