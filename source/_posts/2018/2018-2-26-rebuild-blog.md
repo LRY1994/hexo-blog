@@ -113,7 +113,9 @@ categories:
     ```
     这个需要一段时间githubPage才会更新
     
-6. 写文章的时候要插入图片 按照[官方说法](https://hexo.io/zh-cn/docs/asset-folders.html)一点卵用都没有
+6. 写文章的时候要插入图片 
+
+    (1) 按照[官方说法](https://hexo.io/zh-cn/docs/asset-folders.html)
     ```
         _posts
 
@@ -131,9 +133,9 @@ categories:
 
     {% asset_img 图片文件名 [title] %}这样可以插入文章资源目录下的图片
 
-    我的解决方法：``hexo g``生成public文件夹之后，把图片复制到改目录下，再``hexo d``
+    (2) 还是写正常的markdown,``![](./img.png)``,``hexo g``生成public文件夹之后，把图片复制到改目录下，再``hexo d``
     
-    看到还有一个解决方法，没试过
+    (3) 看到还有一个解决方法，没试过
     http://etrd.org/2017/01/23/hexo%E4%B8%AD%E5%AE%8C%E7%BE%8E%E6%8F%92%E5%85%A5%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/
 ## 软件维护
 管理博客
