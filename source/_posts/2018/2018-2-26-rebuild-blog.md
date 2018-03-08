@@ -10,6 +10,7 @@ categories:
 有了上次经验，觉得做一个东西真的要认真规划一下，不然做出来的东西老是迁就的感觉，能用就行。这样是不行的。像做一个产品来做它
 
 源码地址  https://github.com/LRY1994/hexo-blog.git
+
 ## 问题定义
 重构博客原因有下：
 
@@ -139,8 +140,15 @@ categories:
     
     (3) 看到还有一个解决方法，没试过
     http://etrd.org/2017/01/23/hexo%E4%B8%AD%E5%AE%8C%E7%BE%8E%E6%8F%92%E5%85%A5%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/
+
+7. 添加文章阅读量
+[添加文章阅读量](http://www.jeyzhang.com/hexo-next-add-post-views.html)
+
 ## 软件维护
 管理博客
 
+## 总结
 
+    最后发现hexo并不能实现博客以外的东西，可能它的定位就是博客框架吧。
+    而且hexo和next都不可以自定义layout,Jekyll还可以自定义layout放置在_layout目录下
 
