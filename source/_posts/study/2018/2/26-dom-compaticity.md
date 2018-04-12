@@ -409,12 +409,15 @@ function getStyle(obj,attr){
 
 ```
 ## 手写动画
+多个属性同时运动需要用到JSON,并且所有运动达到目标值才能停止
+
  ```javascript
 //动画 startMove(oLi,{width:400,height:200,opacity:100})
 function startMove(obj,json,fn){
     clearInterval(obj.timer);
     obj.timer=setInterval(function () {
         for(var attr in json){
+            //1.取当前的值
             var cur=0;
             if(attr=='opacity'){
                 cur=Math.round(parseFloat(getStyle(obj,attr))*100);
@@ -422,8 +425,10 @@ function startMove(obj,json,fn){
             else {
                 cur=parseInt(getStyle(obj,attr));
             }
+            //2.算速度
             var speed=(json[attr]-cur)/8;
             speed=speed>0?Math.ceil(speed):Math.floor(speed);
+            //3.检测停止
             var flag=true;
             if(cur!=json[attr]){//使得所有属性做完运动才结束
                 flag=false;
@@ -834,7 +839,26 @@ function type(obj) {
 	return map[toString.call(obj)];
 }
 ```
+## 使用userAgent判断使用的是什么浏览器
 
+360的兼容模式用的是IE、极速模式用的是chrome的内核
+
+ ```javascript
+ function validB(){ 
+  var u_agent = navigator.userAgent; 
+  var B_name="Failed to identify the browser"; 
+  if(u_agent.indexOf("Firefox")>-1){ 
+      B_name="Firefox"; 
+  }else if(u_agent.indexOf("Chrome")>-1){ 
+      B_name="Chrome"; 
+  }else if(u_agent.indexOf("MSIE")>-1&&u_agent.indexOf("Trident")>-1){ 
+      B_name="IE(8-10)";  
+  }
+    document.write("B_name:"+B_name+"<br>");
+    document.write("u_agent:"+u_agent+"<br>"); 
+} 
+
+ ```
 ## 深度克隆
  ```javascript
 /**
@@ -974,6 +998,7 @@ EventTarget.prototype = {
       }
 };
  ```
+
 ## 分享一个题目
  ```javascript
 

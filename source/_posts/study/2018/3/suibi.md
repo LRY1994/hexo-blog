@@ -60,40 +60,6 @@ line-height设置为height的值
 在讨论非父子通信的时候，并在没有用Vuex的情况下，我是用官网那种创建Vue实例的方法，但是同事提到了另一种方法
 用refs来引用，不禁一想这好像也是一种解决方案，就是觉得怪怪的。在这里记录一下
 
-### 浏览器缓存机制
-[https://www.cnblogs.com/shixiaomiao1122/p/7591556.html](https://www.cnblogs.com/shixiaomiao1122/p/7591556.html)
-[https://www.cnblogs.com/slly/p/6732749.html](https://www.cnblogs.com/slly/p/6732749.html)
-
-判断缓存是否过期步骤是：
-- 不发生请求 强缓存：
-    **s-maxage优先于max-age优先于expires**
-
-    1） 查看是否有cache-control 的max-age / s-maxage , 如果有，则用服务器时间date值 + max-age/s-maxage 的秒数计算出新的过期时间，将当前时间与过期时间进行比较，判断是否过期
-
-    2）查看是否有cache-control 的max-age / s-maxage，如果没有，则用expires 作为过期时间比较
-
-- 发送请求
-
-    3）Last-Modified与ETag，**ETag优先于Last-Modified**
-
-        Last-Modified已经足以让浏览器知道本地的缓存副本是否足够新，为什么还需要Etag（实体标识）呢？HTTP1.1中Etag的出现主要是为了解决几个Last-Modified比较难解决的问题：
-
-        1. Last-Modified标注的最后修改只能精确到秒级，如果某些文件在1秒钟以内，被修改多次的话，它将不能准确标注文件的新鲜度
-        2. 如果某些文件会被定期生成，当有时内容并没有任何变化，但Last-Modified却改变了，导致文件没法使用缓存
-        3. 有可能存在服务器没有准确获取文件修改时间，或者与代理服务器时间不一致等情形
-
-{% asset_img cache.png 浏览器缓存机制 %}
-{% asset_img cache2.png 浏览器缓存机制 %}
-
-{% asset_img user_cache.png 用户行为影响浏览器缓存 %}
-
-浏览器的缓存来源是怎么设置的？
-
-{% asset_img cache_from.png 浏览器缓存来源 %}
-
-看到知乎有人讨论 [https://www.zhihu.com/question/64201378](https://www.zhihu.com/question/64201378)
-
-
     
 ### 关于第4点，今天工作用了this.$refs来传播事件，类似于$brocast,但是VUE2把$brocast废除了。
 
@@ -229,24 +195,6 @@ mounted(){...},
 ```
 在共用组件上加上key
 ``<div :key="$route.path">``
-
-## JS运行机制
-执行栈,任务队列
-
-``process.nextTick``方法可以在当前"执行栈"的尾部----下一次Event Loop（主线程读取"任务队列"）之前----触发回调函数
-
-``setImmediate``方法则是在当前"任务队列"的尾部添加事件
-
-``process.nextTick``指定的回调函数是在本次"事件循环"触发，而setImmediate指定的是在下次"事件循环"触发
-
-``setTimeout(fn,0)``表示当前代码执行完（执行栈清空）以后，立即执行（0毫秒间隔）指定的回调函数。
-
-``Promise``，里面的函数是直接执行的.
-
-``Promise`` 的 then 应当会放到当前 "执行栈"的尾部
-
-{% asset_img js_zhan_duilie.jpg js堆栈 %}
-
 
 ### 单行文本超出隐藏并显示省略号
 ```css
