@@ -8,7 +8,10 @@ tags:
     - 面试
     - js 
 ---
+
+[44个Javascript变态题解析](https://blog.csdn.net/ceshi986745/article/details/51698893)
 ## JS运行机制
+
 执行栈,任务队列
 
 ``process.nextTick``方法可以在当前"执行栈"的尾部----下一次Event Loop（主线程读取"任务队列"）之前----触发回调函数
@@ -50,10 +53,21 @@ b=111;
 console.info(a+b);//111111111111111110000
 ```
 
+JS的基础类型Number，遵循 IEEE 754 规范，采用双精度存储（double precision），占用 64 bit。
+1位用来表示符号位，
+11位用来表示指数，
+52位表示尾数
+
+Math.pow(2, 53) == 9007199254740992 是可以表示的最大值. 
+
+```javascript
+Number.isSafeInteger(111111111111111110000)//false
+```
 * 3
 ```javascript
 [3,2,1].reduce(Math.pow)//9
 ```
+表达式等价于 Math.pow(3, 2) => 9; Math.pow(9, 1) =>9
 
 * 4
 ```javascript
@@ -61,6 +75,13 @@ var arr = [0,1,2];
 arr[10]=10;
 arr.filter(function(x){return x==undefined});//[]
 ```
+首先检查了这个索引值是不是数组的一个属性, 那么我们测试一下.
+```javascript
+0 in ary; => true
+3 in ary; => false
+10 in ary; => true
+```
+从 3 - 9 都是没有初始化的'坑'!, 这些索引并不存在与数组中. 在 array 的函数调用的时候是会``跳过``这些'坑'的,所以它不知道是不是undefined
 
 * 5
 ```javascript
@@ -112,7 +133,7 @@ typeof f() //number
 typeof f   //function
 ```
 
-* 7
+* 7 重点
 ```javascript
 add(2, 5); // 7
 add(2)(5); // 7
@@ -138,10 +159,7 @@ function add(){
 }
 
 ```
-chrome下输出
-{% asset_img 7.png %}
 
-所以，存在对象声明，结果一样；对象不存在会js异常
 
 * 8
 ```javascript
@@ -211,3 +229,19 @@ Array("80","16","50","6","100","1");
 document.write(myarr2.sort());//1,100,16,50,6,80
 ```
 原因 ：因为按unicode码顺序排列。如要实现排序，就必须手写排序函数
+
+
+{% asset_img 1.png %}
+{% asset_img 2.png %}
+{% asset_img 3.png %}
+{% asset_img 4.png %}
+{% asset_img 5.png %}
+{% asset_img 6.png %}
+{% asset_img 7.png %}
+
+什么是普通对象？？？
+{% asset_img 8.png %}
+{% asset_img 9.png %}
+
+为什么result先输出？？？？
+{% asset_img 10.png %}
