@@ -467,6 +467,10 @@ Background:url('')
 
 ## 只有设置了相对定位，或者绝对定位的元素才具有的属性是（z-index）
 
+[当面试官问你Vue响应式原理，你可以这么回答他](https://juejin.im/post/5adf0085518825673123da9a)
+
+[如何解释vue的生命周期才能令面试官满意？](https://juejin.im/post/5ad10800f265da23826e681e)
+
 [HTML5中37个最重要的技术点](https://www.tuicool.com/articles/v2aeMbn?utm_medium=hao.caibaojian.com&utm_source=hao.caibaojian.com)
 
 [BAT 要的是什么样的前端实习生？](https://www.tuicool.com/articles/bInqieZ?utm_medium=hao.caibaojian.com&utm_source=hao.caibaojian.com)
