@@ -465,6 +465,34 @@ Background:url('')
  X=node.removeChild(child)把删除的子节点赋值给 x，这个子节点不在DOM树中，但是还存在内存中，
 如果要完全删除对象，给 x 赋 null 值
 
+## fetch跟jquery ajax的区别
+这也是fetch很奇怪的地方：
+
+当接收到一个代表错误的 HTTP 状态码时，从 fetch()返回的 Promise 不会被标记为 reject，而是标记为 resolve（但是会将 resolve 的返回值的 ok 属性设置为 false ）即使该 HTTP 响应的状态码是 404 或 500。
+  
+仅当网络故障时或请求被阻止时，才会标记为 reject。
+
+默认情况下, fetch 不会从服务端发送或接收任何 cookies, 如果站点依赖于用户 session，则会导致未经认证的请求（要发送 cookies，必须设置 credentials 选项）.
+
+fetch是比较底层的API，很多情况下都需要我们再次封装。
+比如：
+```javascript
+// jquery ajax
+$.post(url, {name: 'test'})
+// fetch
+fetch(url, {
+    method: 'POST',
+    body: Object.keys({name: 'test'}).map((key) => {
+        return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]);
+    }).join('&')
+})
+```
+由于fetch是比较底层的API，所以需要我们手动将参数拼接成'name=test'的格式，而jquery ajax已经封装好了。所以fetch并不是开箱即用的。
+另外，fetch还``不支持超时控制``。
+
+>axios体积比较小，也没有上面fetch的各种问题，我认为是当前最好的请求方式 
+
+
 ## 只有设置了相对定位，或者绝对定位的元素才具有的属性是（z-index）
 
 [当面试官问你Vue响应式原理，你可以这么回答他](https://juejin.im/post/5adf0085518825673123da9a)

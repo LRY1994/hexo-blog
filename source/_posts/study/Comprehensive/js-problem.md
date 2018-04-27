@@ -248,3 +248,102 @@ document.write(myarr2.sort());//1,100,16,50,6,80
 
 ## 你知道为什么会有 Generator 吗?
 [你知道为什么会有 Generator 吗](https://juejin.im/post/5adae8246fb9a07aa541e150)
+
+## 柯里化--部分求值
+柯里化又称部分求值，柯里化函数会接收一些参数，然后不会立即求值，而是继续返回一个新函数，将传入的参数通过闭包的形式保存，等到被真正求值的时候，再一次性把所有传入的参数进行求值
+```javascript
+//通用的柯里化函数
+function curry(fn) {
+    let slice = Array.prototype.slice,  // 将slice缓存起来
+        args = slice.call(arguments, 1);   // 这里将arguments转成数组并保存
+        
+    return function() {
+        // 将新旧的参数拼接起来
+        let newArgs = args.concat(slice.call(arguments));    
+        return fn.apply(null, newArgs); // 返回执行的fn并传递最新的参数
+    }
+}
+// ES6版的柯里化函数
+function curry(fn) {
+    const g = (...allArgs) => allArgs.length >= fn.length ?
+        fn(...allArgs) : 
+        (...args) => g(...allArgs, ...args)
+
+    return g;
+}
+
+// 测试用例
+const foo = curry((a, b, c, d) => {
+    console.log(a, b, c, d);
+});
+foo(1)(2)(3)(4);    // 1 2 3 4
+const f = foo(1)(2)(3);
+f(5);               // 1 2 3 5
+
+```
+## 反柯里化-函数的借用
+简而言之就是函数的借用，天下函数(方法)大家用
+```javascript
+//写法一
+Function.prototype.uncurrying = function() {
+    let self = this;    
+    return function() {
+        let obj = Array.prototype.shift.call(arguments);//删除并返回
+        return self.apply(obj, arguments); 
+    }
+};
+//写法二
+Function.prototype.uncurrying = function() {
+    let self = this;
+    return function() {
+        return Function.prototype.call.apply(self, arguments);
+        /*相当于Function.prototype.call.apply(Array.prototype.slice, arguments);
+        也就是相当于Array.prototype.slice.call(arguments)*/
+    }
+};
+
+//测试一
+let slice = Array.prototype.slice.uncurrying();
+
+(function() {
+    let result = slice(arguments);  
+    console.log(result);    // [1, 2, 3]
+})(1,2,3);
+
+//测试二
+let slice = Array.prototype.push.uncurrying();
+let obj = {
+    'length': 1,
+    '0': 1
+};
+push(obj, 110);
+console.log(obj);   // { '0': 1, '1': 110, length: 2 }
+```
+## 数字类型的 toLocaleString
+minimumIntegerDigits、 minimumFractionDigits 与 maximumFractionDigits，用于指定整数最少位数与小数的最少和最多位数，不够则用0去凑。简单说，自动补0！
+
+minimumSignificantDigits 与 maximumSignificantDigits，用于控制有效数字位数，只要设置了这一组属性，第一组属性全部忽略不算
+
+注意，maximumFractionDigits 与 maximumSignificantDigits 均是四舍五入，使用时需要注意。
+
+```javascript
+const num = 2333333;
+num.toLocaleString();   // 2,333,333
+num.toLocaleString('zh', { style: 'decimal' });   //2,333,333
+num.toLocaleString('zh', { style: 'percent' });   //233,333,300%
+num.toLocaleString('zh', { style: 'currency', currency: 'CNY' });    //￥2,333,333.00
+num.toLocaleString('zh', { style: 'currency', currency: 'cny', currencyDisplay: 'code' });      //CNY2,333,333.00
+num.toLocaleString('zh', { style: 'currency', currency: 'cny', currencyDisplay: 'name' });      //2,333,333.00人民币
+num.toLocaleString('zh', { minimumIntegerDigits: 5 });        //02,333.3
+//如果不想有分隔符，可以指定useGrouping为false
+num.toLocaleString('zh', { minimumIntegerDigits: 5, useGrouping: false });        //02333.3
+num.toLocaleString('zh', { minimumFractionDigits: 2, useGrouping: false });     //2333.30
+
+num = 666.666
+num.toLocaleString('zh', { maximumFractionDigits: 2, useGrouping: false });     //666.67
+
+const num = 1234.5;
+num.toLocaleString('zh', { minimumSignificantDigits: 6, useGrouping: false });      //1234.50
+num.toLocaleString('zh', { maximumSignificantDigits: 4, useGrouping: false });      //1235
+
+```
