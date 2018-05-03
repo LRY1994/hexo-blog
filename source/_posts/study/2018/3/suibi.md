@@ -93,12 +93,9 @@ line-height设置为height的值
 
 ###  js的数组可以是这样的形式
 
-``(4) [{…}, {…}, {…}, {…}, total: 4, code: "core.ok", __ob__: Observer]``
+``(4) [{…}, {…}, {…}, {…}, total: 4, code: "core.ok"]``
 
-他的length是4，不知道是不是ES6的新特性
-我把下面这句在浏览器下运行是出错的
-
-``let arr= [{id:1}, {id:2}, {id:3}, {id:4}, total: 4, code: "core.ok"];``
+他的length是4
     
 ### 把字符串转换成数字可以用数字运算符,但是 + 不行
 ```javascript
