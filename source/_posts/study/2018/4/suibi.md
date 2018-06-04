@@ -72,7 +72,7 @@ Vue.directives('color',{
 
 当日常开发遇到跟dom有关的问题却一筹莫展时，可以想想自定义指令是否有功能可以解决为题
 
-### 父组件给子组件传值，这个值还要从子组件传给它的子组件
+### 父组件给子组件传值，这个值还要从子组件传给它的子组件【inheritAttrs】和【attrs】
 直接一层一层传prop非常麻烦.
 Vue提供了【inheritAttrs】和【attrs】两个功能来解决这样的问题
 ```
@@ -136,7 +136,7 @@ mounted(){
 ```
 这样，子组件的子组件也可以获取这个值了。
 
-### provide / inject -更适合用来做父组件给子组件或孙组件传值，
+### provide / inject -更适合用来做父组件给后代组件传值，
 provide/inject方法要比inheritAttrs/attrs更适合用来做父组件给子组件或孙组件传值，
 [文档的链接](https://cn.vuejs.org/v2/api/#provide-inject)
 ```
