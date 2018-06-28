@@ -151,3 +151,93 @@ function fixRouterIE(vm){
 	}
 }
 ```
+
+### Array.prototype.sort 兼容
+IE9-- Array.prototype.sort 不能根据 对象属性 做排序的遗憾 
+```javascript
+//方法1冒泡排序
+var mySort = function(fn){
+    if(typeof fn != 'function'){
+        fn = function(a,b){
+            return a-b;
+        }
+    }
+
+    for(var i=0; i < this.length-1;i++){
+        for(var j=i+1;j<this.length;j++){
+            var t = this[i];
+            if(fn(this[i],this[j]) > 0){
+                this[i] = this[j];
+                this[j] = t;
+            }
+        }
+    }
+    return this;
+}
+
+if(typeof Array.prototype.sorts!= 'fucntion'){
+    Array.prototype.sorts = mySort;
+    mySort = null;
+}
+
+
+//方法2 插入排序
+var mySort = function(fn){
+    if(typeof fn != 'function'){
+        fn = function(a,b){
+            return a-b;
+        }
+    }
+    for(var i=1;i<this.length;i++){
+        var t = this[i];
+        var j = i-1;
+        while(j >= 0 && fn(this[j],t)> 0 ){
+            this[j+1] = this[j];
+            j--;
+        }
+        this[j+1] = t;
+
+    }
+    return this;
+
+}
+if(typeof Array.prototype.sorts!= 'fucntion'){
+    Array.prototype.sorts = mySort;
+    mySort = null;
+}
+```
+safari 不支持函数参数 
+```javascript
+!function(window){ 
+    var ua = window.navigator.userAgent.toLowerCase(), 
+    reg = /msie|applewebkit.+safari/; 
+    if(reg.test(ua)){ 
+        var _sort = Array.prototype.sort; 
+        Array.prototype.sort = function(fn){ 
+            if(!!fn && typeof fn === 'function'){ 
+                if(this.length < 2) return this; 
+                var i = 0, j = i + 1, l = this.length, tmp, r = false, t = 0; 
+                for(; i < l; i++){ 
+                    for(j = i + 1; j < l; j++){ 
+                        t = fn.call(this, this[i], this[j]); 
+                        r = (typeof t === 'number' ? t : 
+                        !!t ? 1 : 0) > 0 
+                        ? true : false; 
+                        if(r){ 
+                            tmp = this[i]; 
+                            this[i] = this[j]; 
+                            this[j] = tmp; 
+                        } 
+                    } 
+                } 
+                return this; 
+            }else{ 
+                return _sort.call(this); 
+            } 
+        }; 
+    } 
+}(window); 
+```
+[https://blog.csdn.net/lt3487928/article/details/53157817](https://blog.csdn.net/lt3487928/article/details/53157817)
+
+[https://www.cnblogs.com/Alucelx/archive/2011/07/13/2104381.html](https://www.cnblogs.com/Alucelx/archive/2011/07/13/2104381.html)
