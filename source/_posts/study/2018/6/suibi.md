@@ -6,7 +6,7 @@ categories:
     - 总结
 ---
 
-## await/async最佳实践
+### await/async最佳实践
 #### 第一个例子
 ```javascript
 (async ()=>{
@@ -58,7 +58,7 @@ async function cd(){
 Promise.all([ab(),cd()]);
 ```
 
-#### 使用keep-alive
+### 使用keep-alive
 在商品列表进入商品详情页之后
 [vue中使用keepAlive组件缓存遇到的坑](https://www.cnblogs.com/nokelong/p/8124513.html)
 
