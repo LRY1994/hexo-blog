@@ -1,9 +1,9 @@
 ---
-title: 2018-2随笔笔记
+title: 2018-2总结
 date:   2018/2/1
 categories: 
     - 学习 
-    - 随笔笔记
+    - 总结
 ---
 
 * Cache-Control

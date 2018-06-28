@@ -1,9 +1,9 @@
 ---
-title: 2018-3随笔笔记
+title: 2018-3总结
 date:   2018/3/1
 categories: 
     - 学习 
-    - 随笔笔记
+    - 总结
 tags:
     - vue
     - ES6 

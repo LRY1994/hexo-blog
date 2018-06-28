@@ -1,9 +1,9 @@
 ---
-title: 4月随笔
+title: 2018-4总结
 date:   2018/4/1
 categories: 
     - 学习
-    - 随笔笔记 
+    - 总结 
 ---
 
 ### 实现QQ弹窗 和QQ号为qqnum聊天

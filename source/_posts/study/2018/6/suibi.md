@@ -1,9 +1,9 @@
 ---
-title: 6月随笔
+title: 2018-6总结
 date:   2018/6/1
 categories: 
     - 学习
-    - 随笔笔记 
+    - 总结
 ---
 
 ## await/async最佳实践
