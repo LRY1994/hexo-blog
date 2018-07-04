@@ -116,4 +116,6 @@ url=
 ```
 
 ### vue强制更新
-用vue.$set不行，watch不行，试试$forceUpdate
+用vue.$set不行，watch不行，试试$forceUpdate。
+还有一种办法，再把值重新复制一遍也是可以的
+``this.obj = Object.assign({},this.obj)``
