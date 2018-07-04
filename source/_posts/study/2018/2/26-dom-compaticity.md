@@ -199,7 +199,8 @@ xhr.send(new FormData(form));//第二种写法
 function createCORSRequest(method,url){
 	var xhr=new XMLHttpRequest();
 	if("withCredentials" in xhr){
-		xhr.open(method,url,true);
+        xhr.withCredentials = true;//默认情况下，这样的跨域无法带上目标域的会话（Cookies 等），需要设置xhr 实例的withCredentials 属性为true（IE 还不支持）
+		xhr.open(method,url,true);//第三个参数，true 表示异步，false 表示同步
 	}else if(typeof XDomainRequest !="undefined"){
 		xhr=new XDomainRequest();
 		xhr.open(method,url);
@@ -210,7 +211,7 @@ function createCORSRequest(method,url){
 }
 var request=createCORSRequest("get","http://www.somewhere");
 if(request){
-	request.onload=function(){};
+	request.onload=function(){};// 请求成功后
 	request.send();
 }
 ```
@@ -1166,6 +1167,34 @@ function traverse(oNode) {
     return aResult;
 }
  
+ ```
+
+ ### IE的userData
+ ```javascript
+ function set_ud(key,value) {
+    var a = document.getElementById('x'); // x 为任意div 的id 值
+    a.addBehavior("#default#userdata");
+    a.setAttribute(key,value);
+    a.save("db");
+}
+function get_ud(key) {
+    var a = document.getElementById('x');
+    a.addBehavior("#default#userdata");
+    a.load("db");
+    alert(a.getAttribute(key));
+}
+function del_ud(key) {
+    var a = document.getElementById('x');
+    a.addBehavior("#default#userdata");
+    a.setAttribute(key, ""); // 设置为空值即可
+    a.save("db");
+}
+window.onload = function(){
+    set_ud('a','xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'); // 设置
+    get_ud('a'); // 获取a 的值
+    del_ud('a'); // 删除a 的值
+    get_ud('a'); // 获取a 的值
+};
  ```
 
 

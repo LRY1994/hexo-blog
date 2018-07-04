@@ -124,7 +124,8 @@ input::-webkit-input-placeholder{
 ```
 html5对a标签新增的download属性用于下载文件，简单的理解是a标签如果添加了download属性，那么点击它的时候就不会跳转，而是会触发浏览器下载文件。
 那么我不加download属性会下载下来的东西是什么？？
-docx后缀的word文档用解压软件打开就是这个目录结构
+
+答案：docx后缀的word文档用解压软件打开就是这个目录结构
 
 ### $nextTick
 Vue 实现响应式并不是数据发生变化之后 DOM 立即变化，而是按一定的策略进行 DOM 的更新。
@@ -241,3 +242,23 @@ safari 不支持函数参数
 [https://blog.csdn.net/lt3487928/article/details/53157817](https://blog.csdn.net/lt3487928/article/details/53157817)
 
 [https://www.cnblogs.com/Alucelx/archive/2011/07/13/2104381.html](https://www.cnblogs.com/Alucelx/archive/2011/07/13/2104381.html)
+
+### height设为100%要求父容器高度确定，否则无效。
+### el-scrollbar滚动到容器底部
+```
+<el-scrollbar style="height:100%" ref="elscrollbar">
+var div = this.$refs['elscrollbar'].$refs['wrap'];
+this.$nextTick(() => {
+    div.scrollTop = div.scrollHeight
+})
+```
+
+### 怎么应用vertical-align，才能生效？
+[怎么应用vertical-align，才能生效](https://blog.csdn.net/diudiu5201/article/details/54666809)
+1. 父元素（inline-block\block）必须含有line-height（inline元素有无皆可），子元素（inline-block/inline元素）中的vertical-align才能起作用。
+vertical-align不可继承，必须对子元素单独设置。
+
+2. 当父元素没有设置line-height时，vertical-align只对行内元素的兄弟元素对齐有用，无法子元素居中对齐父元素。
+设置了vertical-align:middle的子元素的中线与兄弟元素的基线对齐。若兄弟元素都设置该项，则居中对齐。
+
+
