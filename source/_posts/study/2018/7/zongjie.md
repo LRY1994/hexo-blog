@@ -119,3 +119,7 @@ url=
 用vue.$set不行，watch不行，试试$forceUpdate。
 还有一种办法，再把值重新复制一遍也是可以的
 ``this.obj = Object.assign({},this.obj)``
+
+
+### 在Vue中使用sass及sass图片路径问题
+[https://www.jianshu.com/p/5e81814f8d8c](https://www.jianshu.com/p/5e81814f8d8c)

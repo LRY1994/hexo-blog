@@ -10,6 +10,10 @@ tags:
 ---
 
 [44个Javascript变态题解析](https://blog.csdn.net/ceshi986745/article/details/51698893)
+## foreach
+数组的foreach可以和闭包起一样的作用
+
+闭包中的变量包括参数，在内部函数执行完毕之前不会被释放
 ## JS运行机制
 
 执行栈,任务队列
@@ -347,3 +351,4 @@ num.toLocaleString('zh', { minimumSignificantDigits: 6, useGrouping: false });  
 num.toLocaleString('zh', { maximumSignificantDigits: 4, useGrouping: false });      //1235
 
 ```
+
