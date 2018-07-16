@@ -56,7 +56,9 @@ ES5提出的``performance``可以获取到，``微秒级别(10^-9)``
 
 
 ``performance.timing``对象
-{% asset_img 1.png %}
+{% asset_img timing.png %}
+
+ [https://www.cnblogs.com/libin-1/p/6501951.html](https://www.cnblogs.com/libin-1/p/6501951.html)
  
 比如，我们获得重定向时间用:
 ```javascript
@@ -211,19 +213,73 @@ redirectTime = redirectEnd - redirectStart
 
 ok~ 使用performance测试时间为:
 
-```javascript
-// DNS 缓存时间
-    times.appcache = t.domainLookupStart - t.fetchStart;
-// TCP 建立连接完成握手的时间
-    times.connect = t.connectEnd - t.connectStart;
-//DNS 查询时间
-    times.lookupDomain = t.domainLookupEnd - t.domainLookupStart;
-//整个解析时间
-var lookup = t.responseEnd - t.fetchStart;
-```
+DNS查询耗时 = domainLookupEnd - domainLookupStart
+
+TCP链接耗时 = connectEnd - connectStart
+
+request请求耗时 = responseEnd - responseStart
+
+解析dom树耗时 = domComplete - domInteractive
+
+白屏时间 = domloadng - fetchStart
+
+domready时间 = domContentLoadedEventEnd - fetchStart
+
+onload时间 = loadEventEnd - fetchStart
 
 其实，只要对照第一个图查查就可以，不用太关注上面的式子。使用时需要注意，``performance的相关操作，最好放在onload的回调中执行，避免出现异常的bug.``
+```javascript
+;
+(function() {
 
+    handleAddListener('load', getTiming)
+
+    function handleAddListener(type, fn) {
+        if(window.addEventListener) {
+            window.addEventListener(type, fn)
+        } else {
+            window.attachEvent('on' + type, fn)
+        }
+    }
+
+    function getTiming() {
+        try {
+            var time = performance.timing;
+            var timingObj = {};
+
+            var loadTime = (time.loadEventEnd - time.loadEventStart) / 1000;
+
+            if(loadTime < 0) {
+                setTimeout(function() {
+                    getTiming();
+                }, 200);
+                return;
+            }
+
+            timingObj['重定向时间'] = (time.redirectEnd - time.redirectStart) / 1000;
+            timingObj['DNS解析时间'] = (time.domainLookupEnd - time.domainLookupStart) / 1000;
+            timingObj['TCP完成握手时间'] = (time.connectEnd - time.connectStart) / 1000;
+            timingObj['HTTP请求响应完成时间'] = (time.responseEnd - time.requestStart) / 1000;
+            timingObj['DOM开始加载前所花费时间'] = (time.responseEnd - time.navigationStart) / 1000;
+            timingObj['DOM加载完成时间'] = (time.domComplete - time.domLoading) / 1000;
+            timingObj['DOM结构解析完成时间'] = (time.domInteractive - time.domLoading) / 1000;
+            timingObj['脚本加载时间'] = (time.domContentLoadedEventEnd - time.domContentLoadedEventStart) / 1000;
+            timingObj['onload事件时间'] = (time.loadEventEnd - time.loadEventStart) / 1000;
+            timingObj['页面完全加载时间'] = (timingObj['重定向时间'] + timingObj['DNS解析时间'] + timingObj['TCP完成握手时间'] + timingObj['HTTP请求响应完成时间'] + timingObj['DOM结构解析完成时间'] + timingObj['DOM加载完成时间']);
+
+            for(item in timingObj) {
+                console.log(item + ":" + timingObj[item] + '毫秒(ms)');
+            }
+
+            console.log(performance.timing);
+
+        } catch(e) {
+            console.log(timingObj)
+            console.log(performance.timing);
+        }
+    }
+})();
+```
 ## process,onload
 
 这里的过程其实就和开头的时候说的一样
