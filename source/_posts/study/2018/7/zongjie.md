@@ -67,7 +67,7 @@ style=11
 ```
 
 ##### QQ空间(这个好像腾讯坏了，都是undefined)
-http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?
+http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http%3A%2F%2Fwww.sohu.com%2Fa%2F241105210_679976
 ```
 url=
 desc=
@@ -121,5 +121,5 @@ url=
 ``this.obj = Object.assign({},this.obj)``
 
 
-### 在Vue中使用sass及sass图片路径问题
+### 在Vue中使用sass及sass图片路径问题 
 [https://www.jianshu.com/p/5e81814f8d8c](https://www.jianshu.com/p/5e81814f8d8c)

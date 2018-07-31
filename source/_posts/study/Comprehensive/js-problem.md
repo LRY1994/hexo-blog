@@ -32,6 +32,18 @@ tags:
 
 {% asset_img js_zhan_duilie.jpg js堆栈 %}
 
+在Javascript引擎里面，队列还分为 Task队列（也有人叫做 MacroTask）和 MicroTask队列， MicroTask会优先于 Task执行。
+
+比如常见的点击事件、 setImmediate、 setTimeout、 MessageChannel等会放入 Task队列，
+
+但是 Promise以及 MutationObserver会放到 Microtask队列。
+
+同时，Javascript引擎在执行 Microtask队列的时候，如果期间又加入了新的 Microtask，则该 Microtask会加入到之前的 Microtask队列的尾部，保证 Microtask先于 Task队列执行。
+
+Task(MacroTask)队列中： **setImmediate > MessageChannel > setTimeout 0**
+
+[你真的了解Javascript执行顺序么？](https://mp.weixin.qq.com/s/2ilx-5kDvszjF66iAvYQlg?utm_medium=hao.caibaojian.com&utm_source=hao.caibaojian.com)
+
 * 1
 ```javascript
 let a=[1,2,3];
