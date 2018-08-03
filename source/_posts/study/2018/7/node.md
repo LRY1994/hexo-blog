@@ -3,7 +3,7 @@ title: 《深入浅出node.js》、慕课网
 date:   2018/7/5
 categories: 
     - 学习
-    - 专题
+    - 读书笔记
 ---
 《深入浅出node.js》
 ===================
@@ -87,35 +87,36 @@ clientRequest.setNoDelay()
 非I/O异步的方法：``setTimeout``,``setInterval``,``setImmediate``,``process.nextTick``
 
 ### ``setTimeout``,``setInterval``
-调用``setTimeout``,``setInterval``创建的定时器会被插入到定时器观察者内部的一个红黑树里面。每次Tick执行，就从改红合数中迭代去除定时器对象，检查是否超过定时时间。如果超过，就形成一个事件，回调函数立即执行
+    调用``setTimeout``,``setInterval``创建的定时器会被插入到定时器观察者内部的一个红黑树里面。每次Tick执行，就从改红合数中迭代去除定时器对象，检查是否超过定时时间。如果超过，就形成一个事件，回调函数立即执行
 
-{% asset_img setTimeout.png %}
+    {% asset_img setTimeout.png %}
 
 ### ``process.nextTick`` VS ``setTimeout(function(){},0)``
-立即执行一个异步任务可以用``process.nextTick``。
+    立即执行一个异步任务可以用``process.nextTick``。
 
-``setTimeout(function(){},0)``需要动用到红黑树，创建定时器对象和迭代操作等操作，较浪费性能，复杂度为O(lg(n)。
+    ``setTimeout(function(){},0)``需要动用到红黑树，创建定时器对象和迭代操作等操作，较浪费性能，复杂度为O(lg(n)。
 
-nextTick只会将回调函数放入队列中，在下一轮Tick时取出执行，复杂度为O(1)。
+    nextTick只会将回调函数放入队列中，在下一轮Tick时取出执行，复杂度为O(1)。
 
 ### ``setImmediate``  VS ``process.nextTick``
-``process.nextTick``优先级大于 ``setImmediate`` 。因为时间循环对观察者的检查是有先后顺序的，``process.nextTick``属于idle观察者，``setImmediate``属于check观察者。在每一个时间循环检查中，**观察者检查顺序：idle---I/O---check**
 
-``process.nextTick``的回调保存在一个**数组**中。
- ``setImmediate``的回调保存在一个**链表**中
+    ``process.nextTick``优先级大于 ``setImmediate`` 。因为时间循环对观察者的检查是有先后顺序的，``process.nextTick``属于idle观察者，``setImmediate``属于check观察者。在每一个时间循环检查中，**观察者检查顺序：idle---I/O---check**
 
- ``process.nextTick``在一个事件循环中会将所有回调函数全部执行完。``setImmediate``每一个时间循环只会执行一个回调。
+    ``process.nextTick``的回调保存在一个**数组**中。
+    ``setImmediate``的回调保存在一个**链表**中
+
+    ``process.nextTick``在一个事件循环中会将所有回调函数全部执行完。``setImmediate``每一个时间循环只会执行一个回调。
 
 ### 异常处理
-对异步方法进行try/catch操作只可以捕获**当次**事件循环里面的异常
+    对异步方法进行try/catch操作只可以捕获**当次**事件循环里面的异常
 
-solution:Node在处理异常上形成一种约定，将异常作为回调函数的第一个实参传回。
+    solution:Node在处理异常上形成一种约定，将异常作为回调函数的第一个实参传回。
 
-需要睡眠阻塞代码调用setTimeout更好，不要用下面的代码.这段代码会持续占用CPU，与真正的sleep相去甚远
-```javascript
-var s =new Date();
-while(neW Date()-s<100){}
-```
+    需要睡眠阻塞代码调用setTimeout更好，不要用下面的代码.这段代码会持续占用CPU，与真正的sleep相去甚远
+    ```javascript
+    var s =new Date();
+    while(neW Date()-s<100){}
+    ```
 
 ### 异步编程解决方案
 EventProxy 是对 events.EventEmitter 的补充，可以自由订阅组合事件
@@ -170,7 +171,7 @@ V8 的垃圾回收会引起Javascript线程``暂停执行``，回收的内存越
 * 闭包
     实现外部作用域访问内部作用域变量
 
-    它的问题在于，一旦有变量引用了这个中间函数，这个中间函数将不会释放，同事会使原始的作用域也得不到释放，作用域中产生的内存占用也不会得到释放。除非不再有引用，擦会逐步释放
+    它的问题在于，一旦有变量引用了这个中间函数，这个中间函数将不会释放，同事会使原始的作用域也得不到释放，作用域中产生的内存占用也不会得到释放。除非不再有引用，才会逐步释放
 
 * 内存
 
