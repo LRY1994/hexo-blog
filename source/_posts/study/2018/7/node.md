@@ -192,7 +192,13 @@ V8 的垃圾回收会引起Javascript线程``暂停执行``，回收的内存越
 
     stream模块用于处理大文件。如果不需要字符串层面的操作，则不需要借助V8来处理，可以尝试纯粹的Buffer来操作，这就不会受到V8的堆内存限制。但是这个大片使用内存的情况依然要小心，即使V8不限制堆内存的大小，物理内存依然有限制
 
+Node在内存的使用上采用的是在C++层面申请内存、在Javascript中分配内存的策略。
+Buffer就是在C++层面申请内存的
 
+## Buffer
+宽字节字符串被截断的问题可以用setEncoding()解决。原因在于，在调用setEncoding()的时候，可读流对象在内部设置了一个decoder对象。每次data事件都通过该decoder对象进行Buffer到字符串的解码，然后再进行下一步。decoder来自于string_decoder模块的StringDecoder实例对象，StringDecoder知道编码会自行决定输出哪些字节，保证字节不会被截断。但是setEncoding不能从根本上解决该问题。
+
+更好的解决方法是讲多个小Buffer对象拼接成一个Buffer对象（concat方法），然后通过iconv-lite一类的模块来转码。
 
 
 
