@@ -200,6 +200,11 @@ Buffer就是在C++层面申请内存的
 
 更好的解决方法是讲多个小Buffer对象拼接成一个Buffer对象（concat方法），然后通过iconv-lite一类的模块来转码。
 
+## TCP
+在node中，TCP默认启用Nagle算法，要求缓冲区的数据达到一定数量或一定时间后才将其发出，所以小数据包会被合并，优化网络。
+可以调用socket.setNoDelay(true)取消Nagle算法，使得write()可以立即发送数据到网络中。
+并不是每次write()都会触发一次data事件。在关闭掉Nagle后，另一端可能会将接收到的多个小数据包合并，然后只触发一次data事件
+
 
 
 ## 其他
