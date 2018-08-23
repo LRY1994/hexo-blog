@@ -53,7 +53,9 @@ g.setEdge("FAILED",   "CANCELED",     { label: "用户取消订单" });
 
 ### gojs
 github :[https://github.com/NorthwoodsSoftware/GoJS](https://github.com/NorthwoodsSoftware/GoJS)
-```npm install gojs -save```
+
+可以通过``npm install gojs -save``安装
+
 效果图
 {% asset_img gojs.png %}
 
@@ -230,7 +232,7 @@ export default{
 
 ```
 
-不满意的地方：
+**不满意的地方**：
 1. 免费版gojs是有水印的，百度搜索“gojs如何去水印”有一堆答案，我就不写了。
 2. 因为要自己手动去掉水印，所以我只能手动下载go.js放在我自己的组件目录下，但是这个文件太大了，800+KB,
 npm run dev 的时候停在这里停了好久。有时候还爆出“......maximun ....500KB”的错误，我也不知道是什么原因，不知道有什么方法，有的话麻烦通知我。
@@ -242,6 +244,12 @@ npm run dev 的时候停在这里停了好久。有时候还爆出“......maxim
 github : [https://github.com/clientIO/joint](https://github.com/clientIO/joint) 
 效果图
 {% asset_img jointjs.png %}
+
+可以通过``npm install jointjs -save``安装
+
+参照了很多demo和文档，用的是矩形，但是可以设置圆角的度数变成椭圆形，其他形状我就无力了。
+
+可以自定义矩形的样式和矩形框里面的文字样式
 
 ```javascript
 //data.vue
@@ -584,7 +592,8 @@ export default {
 这个目前看来还算满意
 
 
-
+### jsplumb
+这个看了官网，不太友好，而且下载只有一个js文件，没有demo代码，不知如何下手
 
 ### 参考资料：
 [https://gojs.net/latest/samples/pageFlow.html](https://gojs.net/latest/samples/pageFlow.html)
