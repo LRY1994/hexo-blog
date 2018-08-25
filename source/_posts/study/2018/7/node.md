@@ -194,6 +194,20 @@ V8 的垃圾回收会引起Javascript线程``暂停执行``，回收的内存越
 
 
 
+## Buffer
+
+Node在内存的使用上采用的是在C++层面**申请**内存、在Javascript中**分配**内存的策略。
+
+
+宽字节字符串被截断的问题可以用setEncoding()解决。原因在于，在调用setEncoding()的时候，可读流对象在内部设置了一个decoder对象。每次data事件都通过该decoder对象进行Buffer到字符串的解码，然后再进行下一步。decoder来自于string_decoder模块的StringDecoder实例对象，StringDecoder知道编码后会自行决定输出哪些字节，不输出哪些字节，保证字节不会被截断。但是setEncoding不能从根本上解决该问题。
+
+更好的解决方法是把多个小Buffer对象拼接成一个Buffer对象（concat方法），然后通过iconv-lite一类的模块来转码。
+
+## TCP
+在node中，TCP默认启用Nagle算法，要求缓冲区的数据达到一定数量或一定时间后才将其发出，所以小数据包会被合并，优化网络。
+可以调用socket.setNoDelay(true)取消Nagle算法，使得write()可以立即发送数据到网络中。
+并不是每次write()都会触发一次data事件。在关闭掉Nagle后，另一端可能会将接收到的多个小数据包合并，然后只触发一次data事件.
+
 
 
 ## 其他
