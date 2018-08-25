@@ -413,12 +413,12 @@ http.createServer(function(req,res){
     //     if(err){
     //         res.end('file is not exist!')
     //     }else{
-    //         res.writeHead(200);
+    //         res.writeHead(200，{‘Content-Type':'text/html'});
     //         res.end(data)
     //     }
     // })
-    fs.createReadStream('logo.png').pipe(res);
-    request('https://imoooc/logo.png').pipe(res)
+    fs.createReadStream('logo.png').pipe(res);//返回给浏览器
+    request('https://imoooc/logo.png').pipe(res)//同上 边下载边pipe
 })
 ```
 上面的复制文件代码就可以改成
@@ -488,3 +488,9 @@ rs.pipe(ts).pipe(ws)
 createReadStream是给你一个ReadableStream，你可以听它的'data'，一点一点儿处理文件，用过的部分会被GC（垃圾回收），所以占内存少。
 
 readFile是把整个文件全部读到内存里，这种方式是把文件内容全部读入内存，然后再写入文件。对于小型的文本文件，这没有多大问题。但是对于体积较大的二进制文件，比如音频、视频文件，动辄几个GB大小，如果使用这种方法，很容易使内存``“爆仓”``。理想的方法应该是读一部分，写一部分，不管文件有多大，只要时间允许，总会处理完成，这里就需要用到流的概念
+
+node不适合的：
+极高并发数（电商）、
+密集CPU运算（最优化路线）、
+高安全高可靠性（银行）、
+内存精密控制和释放

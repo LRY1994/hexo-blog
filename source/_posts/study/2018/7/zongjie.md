@@ -10,7 +10,7 @@ qzone       : 'http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url={{
 qq          : 'http://connect.qq.com/widget/shareqq/index.html?url={{URL}}&title={{TITLE}}&source={{SOURCE}}&desc={{DESCRIPTION}}&pics={{IMAGE}}',
 tencent     : 'http://share.v.t.qq.com/index.php?c=share&a=index&title={{TITLE}}&url={{URL}}&pic={{IMAGE}}',
 weibo       : 'https://service.weibo.com/share/share.php?url={{URL}}&title={{TITLE}}&pic={{IMAGE}}&appkey={{WEIBOKEY}}',
-wechat      : 'javascript:;',
+
 douban      : 'http://shuo.douban.com/!service/share?href={{URL}}&name={{TITLE}}&text={{DESCRIPTION}}&image={{IMAGE}}&starid=0&aid=0&style=11',
 diandian    : 'http://www.diandian.com/share?lo={{URL}}&ti={{TITLE}}&type=link',
 linkedin    : 'http://www.linkedin.com/shareArticle?mini=true&ro=true&title={{TITLE}}&url={{URL}}&summary={{SUMMARY}}&source={{SOURCE}}&armin=armin',
@@ -67,7 +67,7 @@ style=11
 ```
 
 ##### QQ空间(这个好像腾讯坏了，都是undefined)
-http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http%3A%2F%2Fwww.sohu.com%2Fa%2F241105210_679976
+http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?
 ```
 url=
 desc=
@@ -119,7 +119,3 @@ url=
 用vue.$set不行，watch不行，试试$forceUpdate。
 还有一种办法，再把值重新复制一遍也是可以的
 ``this.obj = Object.assign({},this.obj)``
-
-
-### 在Vue中使用sass及sass图片路径问题 
-[https://www.jianshu.com/p/5e81814f8d8c](https://www.jianshu.com/p/5e81814f8d8c)
