@@ -508,3 +508,13 @@ node不适合的：
 密集CPU运算（最优化路线）、
 高安全高可靠性（银行）、
 内存精密控制和释放
+
+express中，req.param()方法是对params\body\query的封装，取值顺序是params->body->query。
+
+非简单请求的CORS（跨域）请求，会在正式通信之前，增加一次HTTP查询请求，称为"预检"请求（preflight）。在你的post请求之前会发送一次OPTIONS请求
+[跨域资源共享 CORS 详解](http://www.ruanyifeng.com/blog/2016/04/cors.html)
+
+服务端重启会清除session.session持久化方法：cookies,redis,MongoDB,硬盘内存
+为了弥补HTTP的无状态，就有了cookies和session.之前没有seesion的时候都用的是cookies.
+当程序需要给某个客户端请求创建一个session时，服务器会检查请求里面是否包含sessionid,服务器把这个session找出来就行了。没有就创建，返回sessionid给客户端保存.
+[koa-session](https://www.jianshu.com/p/8f4cc45d712e)

@@ -3,7 +3,7 @@ title: 2018-3总结
 date:   2018/3/1
 categories: 
     - 学习 
-    - 总结
+    - 每月总结
 tags:
     - vue
     - ES6 
