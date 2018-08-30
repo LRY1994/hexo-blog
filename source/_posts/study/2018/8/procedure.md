@@ -9,6 +9,12 @@ categories:
 因为公司项目需求，要画出相关业务的流程图，以便客户了解自己身处何处
 
 搜索框输入 “前端流程图插件”，查了很多资料，总结一下有以下几种
+### Raphael
+http://dmitrybaranovskiy.github.io/raphael/reference.html
+这个星星很多，但是我找到的demo都要自己设置x坐标，y坐标，找不到自动布局的demo
+
+http://www.weixuehao.com/archives/370
+
 ### flow-chart 
 代码写法繁琐，不是json就可以解决，效果也比较丑,PASS
 
@@ -599,3 +605,52 @@ export default {
 [https://gojs.net/latest/samples/pageFlow.html](https://gojs.net/latest/samples/pageFlow.html)
 [http://www.daviddurman.com/assets/autolayout.js](http://www.daviddurman.com/assets/autolayout.js)
 [http://resources.jointjs.com/demos/layout](http://resources.jointjs.com/demos/layout)
+
+---------------------------------------------更新 2018/8/30----------------------------------------------------------
+经过一番实践，我觉得jointjs不好用了。
+不满意点：
+1. 不能相对容器自动布局，都用的是死的像素，分辨率低的屏幕，部分图有些就看不见
+{% asset_img joint-error.png %}
+2. 不能滚动鼠标自己缩小放大
+3. 比较丑，也可能是我不会配色
+
+最终采用gojs,上面提到的问题解决方案是：把去掉水印的gojs放在自己的npm服务器上，这样就可以npm安装了！！！
+实践过程中遇到个问题
+```html
+<process-go style="height:250px"  v-if="show"  :model-data="dataObj.graph" :category="category"> </process-go>
+```
+像这样，用``v-if``反复切换，会报错``Cannot read property 'type' of undefined     at Po (go.js?d976:1044)``
+
+换成``v-show``就不会
+```html
+<process-go style="height:250px"  v-show="show"  :model-data="dataObj.graph" :category="category"> </process-go>
+```
+但是这样的前提是show初始化是true.如果初始化为false,没有报错，但是图呈现不出来。
+原因我猜测是：show初始化为false,组件高度为0，因为默认画布就是组件容器，所以画布高度变成0，图画不出。
+
+最后想出个方法。``v-if``和``v-show``结合一起使用，加上``$once``方法，代码：
+```html
+<process-go style="height:250px" v-if="firstClick" v-show="show"  :model-data="dataObj.graph" :category="category"> </process-go>
+```
+```javascript
+data(){
+    return{        
+        show:false,
+        firstClick:false,
+    }
+}
+created(){
+    this.init();
+    this.$once('firstClick',()=>{
+        this.firstClick = true
+    })
+},
+methods:{
+    init(){...},
+    look(){//用v-if切换会报错，只有第一次点击查看用v-if,其他用v-show
+        this.$emit('firstClick');
+        this.show = true;
+    }
+}
+```
+重新封装了一下gojs 地址：[https://github.com/LRY1994/vue-lib/blob/master/src/components/process-go/index.vue](https://github.com/LRY1994/vue-lib/blob/master/src/components/process-go/index.vue)
