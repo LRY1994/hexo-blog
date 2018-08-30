@@ -427,12 +427,12 @@ http.createServer(function(req,res){
     //     if(err){
     //         res.end('file is not exist!')
     //     }else{
-    //         res.writeHead(200);
+    //         res.writeHead(200，{‘Content-Type':'text/html'});
     //         res.end(data)
     //     }
     // })
-    fs.createReadStream('logo.png').pipe(res);
-    request('https://imoooc/logo.png').pipe(res)
+    fs.createReadStream('logo.png').pipe(res);//返回给浏览器
+    request('https://imoooc/logo.png').pipe(res)//同上 边下载边pipe
 })
 ```
 上面的复制文件代码就可以改成
@@ -502,3 +502,19 @@ rs.pipe(ts).pipe(ws)
 createReadStream是给你一个ReadableStream，你可以听它的'data'，一点一点儿处理文件，用过的部分会被GC（垃圾回收），所以占内存少。
 
 readFile是把整个文件全部读到内存里，这种方式是把文件内容全部读入内存，然后再写入文件。对于小型的文本文件，这没有多大问题。但是对于体积较大的二进制文件，比如音频、视频文件，动辄几个GB大小，如果使用这种方法，很容易使内存``“爆仓”``。理想的方法应该是读一部分，写一部分，不管文件有多大，只要时间允许，总会处理完成，这里就需要用到流的概念
+
+node不适合的：
+极高并发数（电商）、
+密集CPU运算（最优化路线）、
+高安全高可靠性（银行）、
+内存精密控制和释放
+
+express中，req.param()方法是对params\body\query的封装，取值顺序是params->body->query。
+
+非简单请求的CORS（跨域）请求，会在正式通信之前，增加一次HTTP查询请求，称为"预检"请求（preflight）。在你的post请求之前会发送一次OPTIONS请求
+[跨域资源共享 CORS 详解](http://www.ruanyifeng.com/blog/2016/04/cors.html)
+
+服务端重启会清除session.session持久化方法：cookies,redis,MongoDB,硬盘内存
+为了弥补HTTP的无状态，就有了cookies和session.之前没有seesion的时候都用的是cookies.
+当程序需要给某个客户端请求创建一个session时，服务器会检查请求里面是否包含sessionid,服务器把这个session找出来就行了。没有就创建，返回sessionid给客户端保存.
+[koa-session](https://www.jianshu.com/p/8f4cc45d712e)
