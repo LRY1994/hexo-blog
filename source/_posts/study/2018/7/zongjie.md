@@ -1,5 +1,5 @@
 ---
-title: 2018-7总结
+title: 2018-7至2018-9总结
 date:   2018/7/4
 categories: 
     - 学习
@@ -124,4 +124,52 @@ url=
 ### 在Vue中使用sass及sass图片路径问题 
 [https://www.jianshu.com/p/5e81814f8d8c](https://www.jianshu.com/p/5e81814f8d8c)
 
-CORS跨域请求会先发option请求，如果server返回access-control-allow-origin头为*或者和当前域名一致的话，才会进入第二段的真正请求。
+### CORS跨域请求会先发option请求，如果server返回access-control-allow-origin头为*或者和当前域名一致的话，才会进入第二段的真正请求。
+
+### 禁止缓存数据deactivated 
+ 防止下次选择数据不更新
+```js
+  deactivated () {
+    this.$destroy(true)
+  }
+  ```
+
+### 深拷贝
+ ``arr.slice()``
+ 如果obj所有值都是非引用类型，那么obj.slice(0)与深浅拷贝没有差别；
+
+如果obj有引用类型的元素的话，obj.slice(0)仅仅是复制了元素的地址，，obj.slice(0)可看作浅拷贝。
+
+对象深拷贝 ``Object.assign({},obj)``,不要用JSON.parse(JSON.stringify(obj)),太慢
+
+### 价格标签
+```css
+ .price-label{
+     position: relative;
+     display: inline-block;
+     color: #f15533;
+     border-color: #f15533;
+     font-size: 12px;
+     line-height: 18px;
+     padding: 0 7.5px;
+     z-index: 2;
+     vertical-align: super;
+     &::before{
+             position: absolute;
+             z-index: 1;
+             content: "";
+             top: 0;
+             right: 0;
+             bottom: 0;
+             left: 0;
+             border: 1px solid #ccc;
+             border-color: inherit;
+             border-radius: 2px;
+             transform: skew(-11deg);
+     }
+ }
+```
+
+### 事件冒泡到父容器或某个祖先容器停止
+在父容器或某个祖先容器上绑定一个``@click.stop="stop"``
+stop函数为一个空函数即可
