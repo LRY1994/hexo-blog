@@ -701,7 +701,7 @@ Void RadixSort(Node L[],length,maxradix)
 } 
 ```
 ## 总结
- {%aset_img all_sort.png%}
+ {%asset_img all_sort.png%}
 
 各种排序的稳定性，时间复杂度和空间复杂度总结：
 #### 时间复杂度来说：
