@@ -115,7 +115,7 @@ function getPosition(el) {
 
 
 
-## 浏览器窗口可视区域大小
+## 浏览器窗口可视区域大小clientHeight
 获得浏览器窗口的尺寸（浏览器的视口，不包括工具栏和滚动条）的方法:
 #### 一、对于IE9+、Chrome、Firefox、Opera 以及 Safari：
 * `` window.innerHeight`` - 浏览器窗口的内部高度
@@ -163,7 +163,7 @@ var h=document.documentElement.scrollHeight
 ``offsetHeight``和``offsetWidth``，获取网页内容高度和宽度(包括滚动条等边线，会随窗口的显示大小改变)。
 #### 一、值
 ``offsetHeight = clientHeight + 滚动条 + 边框。``
-####二、浏览器兼容性
+#### 二、浏览器兼容性
 ```javascript
 var w= document.documentElement.offsetWidth
     || document.body.offsetWidth;
