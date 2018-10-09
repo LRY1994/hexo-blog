@@ -7,6 +7,7 @@ categories:
 tags:
     - 面试
 ---
+ getBoundingClientRect() 获取它相对于视图窗口的坐标
 ## HTML元素精准定位
 ``scrollHeight``: 对象的滚动高度。 
 
@@ -63,6 +64,47 @@ tags:
 屏幕可用工作区高度： ``window.screen.availHeight``;
 
 {% asset_img element-position.gif %}
+{% asset_img pic2.jpg %}
+
+
+clientTop/clientLeft  这个属性就是border宽度。
+
+offset包括border,client不包括border
+
+document.documentElement / body要做兼容
+
+## 如何获取元素的精确位置
+```js
+// Helper function to get an element's exact position
+function getPosition(el) {
+  var xPos = 0;
+  var yPos = 0;
+ 
+  while (el) {
+    if (el.tagName == "BODY") {
+      // deal with browser quirks with body/window/document and page scroll
+      var xScroll = el.scrollLeft || document.documentElement.scrollLeft;
+      var yScroll = el.scrollTop || document.documentElement.scrollTop;
+ 
+      xPos += (el.offsetLeft - xScroll + el.clientLeft);
+      yPos += (el.offsetTop - yScroll + el.clientTop);
+    } else {
+      // for all other non-BODY elements
+      xPos += (el.offsetLeft - el.scrollLeft + el.clientLeft);
+      yPos += (el.offsetTop - el.scrollTop + el.clientTop);
+    }
+ 
+    el = el.offsetParent;
+  }
+  return {
+    x: xPos,
+    y: yPos
+  };
+}
+```
+
+
+
 ## screen对象
 
 用于获取用户的屏幕信息。
@@ -76,29 +118,28 @@ tags:
 ## 浏览器窗口可视区域大小
 获得浏览器窗口的尺寸（浏览器的视口，不包括工具栏和滚动条）的方法:
 #### 一、对于IE9+、Chrome、Firefox、Opera 以及 Safari：
-
 * `` window.innerHeight`` - 浏览器窗口的内部高度
 *  ``window.innerWidth ``- 浏览器窗口的内部宽度
 
 #### 二、对于 Internet Explorer 8、7、6、5：
-
 * ``document.documentElement.clientHeight``表示HTML文档所在窗口的当前高度。
-
 * ``document.documentElement.clientWidth``表示HTML文档所在窗口的当前宽度。
 
 或者
 
 Document对象的body属性对应HTML文档的``<body>``标签
 * ``document.body.clientHeight``
-
 * `` document.body.clientWidth``
 
 #### 三、浏览器兼容性
 ```javascript
-var w= document.documentElement.clientWidth
-      || document.body.clientWidth;
-var h= document.documentElement.clientHeight
-      || document.body.clientHeight;
+//屏幕可视窗口大小
+var w= window.innerWidth||document.documentElement.clientWidth|| document.body.clientWidth;
+var h=window.innerHeight|| document.documentElement.clientHeight || document.body.clientHeight;
+
+//滚动条滚动的距离
+window.pagYoffset || document.documentElement.scrollTop||document.body.scrollTop 
+
 ```
 
 ##  网页尺寸scrollHeight

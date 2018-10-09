@@ -6,7 +6,8 @@ categories:
     - 专题笔记 
 tags:
     - 面试
-    - js 
+    - 柯里化
+    - 栈队列
 ---
 
 [44个Javascript变态题解析](https://blog.csdn.net/ceshi986745/article/details/51698893)
@@ -44,6 +45,10 @@ Task(MacroTask)队列中： **setImmediate > MessageChannel > setTimeout 0**
 
 [你真的了解Javascript执行顺序么？](https://mp.weixin.qq.com/s/2ilx-5kDvszjF66iAvYQlg?utm_medium=hao.caibaojian.com&utm_source=hao.caibaojian.com)
 
+### setTimeOut
+{%asset_img setTimeOut.jpg%}
+
+[谈谈JavaScript的异步实现](http://www.cnblogs.com/sprying/archive/2013/05/26/3100639.html)
 * 1
 ```javascript
 let a=[1,2,3];
@@ -364,3 +369,20 @@ num.toLocaleString('zh', { maximumSignificantDigits: 4, useGrouping: false });  
 
 ```
 
+```js
+ [] === []//false 
+ [] == []//false
+ //因为[]是一个数组，是一个对象。就好比创建了2个对象，然后比较两个对象是否相同
+
+[] == false//true
+ /*他是经历了这个过程最终才为true的。
+（[] == false）   ---->  （[] == +0）   ---->  （“”== +0）  ---->  （+0 == +0）  --->   true*/
+ 
+ window instanceof Object//false
+ typeof(window) // object
+
+typeof null === 'object';
+null instanceof Object === false
+
+null instanceof null//会抛出异常：``Uncaught TypeError: Right-hand side of 'instanceof' is not an object``
+ ```
