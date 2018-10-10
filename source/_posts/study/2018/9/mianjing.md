@@ -7,13 +7,7 @@ categories:
 tags:
     - 面试
 ---
-#### 对模块化了解吗？说说有哪些模块化的库，有了解过模块化的发展的历史吗？（commonJS，RequireJS，SeaJS）
-[https://segmentfault.com/a/1190000011081338](https://segmentfault.com/a/1190000011081338)
-AMD CMD ，这两个东西是一种规范，他们实际产物是 AMD是RequireJS，CMD的产物是seajs，他们的出现都是在COMMONjs基础上发展而来的。
-AMD偏向于依赖前置，CMD偏向于用到时才运行的思路，从而导致了依赖项的加载和运行时间点会不同
-与CommonJS用require()方法加载模块不同，在ES6中，import命令可以具体指定加载模块中用export命令暴露的接口（不指定具体的接口，默认加载export default），没有指定的是不会加载的，因此会在编译时就完成模块的加载，这种加载方式称为编译时加载或者静态加载。
-而CommonJS的require()方法是在运行时才加载的：
-
+[https://segmentfault.com/a/1190000011635556?utm_source=tag-newest](https://segmentfault.com/a/1190000011635556?utm_source=tag-newest)
 #### 本质上说，XHTML是一个过渡技术，结合了XML(有几分)的强大功能及HTML(大多数)的简单特性。
 以下是 XHTML 相对 HTML 的几大区别：
 XHTML 要求正确嵌套、
