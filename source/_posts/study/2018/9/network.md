@@ -17,7 +17,7 @@ tags:
 [http://www.cnblogs.com/lovesong/p/5186200.html](http://www.cnblogs.com/lovesong/p/5186200.html)
 
 ### tcp的三次握手和四次挥手画图（当场画写ack 和 seq的值）,为什么tcp要三次握手四次挥手？
-{%asset_img tcp-3_wo.png%}
+{%asset_img tcp_3_wo.png%}
 {%asset_img tcp_4_hui.png%}
 
 #### TCP与UDP的区别
