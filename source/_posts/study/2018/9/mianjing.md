@@ -1,5 +1,5 @@
 ---
-title: 面经收集
+title: 面经收集--HTML+CSS+JS
 date:   2018/10/8
 categories: 
     - 学习
@@ -161,7 +161,7 @@ null instanceof null
 因为你不知道哪一天浏览器或javascript本身就会实现这个方法，而且和你扩展的实现有不一致的表现。到时候你的javascript代码可能已经在无数个页面中执行了数年，而浏览器的实现导致所有使用扩展原型的代码都崩溃了。。。
 
 
-#### js动画和css3动画比较
+#### js动画和css3动画比较/requestAnimationFrame优势
 CSS动画
 优点： 
 
@@ -182,23 +182,6 @@ CSS动画
 　　1、 运行过程控制较弱,无法附加事件绑定回调函数。CSS动画只能暂停,不能在动画中寻找一个特定的时间点，不能在半路反转动画，不能变换时间尺度，不能在特定的位置添加回调函数或是绑定回放事件,无进度报告
 
  　  2、  代码冗长。想用 CSS 实现稍微复杂一点动画,最后CSS代码都会变得非常笨重。
-
- #### css3动画，transition和animation的区别，
-1.  触发条件不同。transition通常和hover等事件配合使用，由事件触发。animation则和gif动态图差不多，立即播放。
-2. 循环。 animation可以设定循环次数。 When triggered, a transition runs only once.You can make a transition loop by fiddling with the transitionEnd event, but that isn't particularly straightforward - especially when compared with animations.
->What About transition: all?
->You do not have to specify every property that you care about when using a transition. You could simplify your life by using the all value instead: transition: all .5s ease-in. I do not recommend this because you will take a performance hit. Your browser is now listening for a whole lotta properties as opposed to just a few that you know you will be modifiying. Unless you have a strong need to do this, I would recommend specifying each CSS property you wish to transition individually.
-
-3. 精确性。 animation可以设定每一帧的样式和时间。tranistion 只能设定头尾。 animation中可以设置每一帧需要单独变化的样式属性， transition中所有样式属性都要一起变化。
-4. 与javascript的交互。animation与js的交互不是很紧密。tranistion和js的结合更强大。js设定要变化的样式，transition负责动画效果。A transition only plays as a reaction to a CSS property that has changed
-
-[https://www.kirupa.com/snippets/move_element_to_click_position.htm](https://www.kirupa.com/snippets/move_element_to_click_position.htm)
-
-
-#### animation的属性，加速度，重力的模拟实现
-[https://blog.csdn.net/drd_zsd123/article/details/80126260](https://blog.csdn.net/drd_zsd123/article/details/80126260)
-[canvas实现](./canvas.html)
-
 #### 使用``requestAnimationFrame``有什么好处？
 浏览器可以优化并行的动画动作，更合理的重新排列动作序列，并把能够合并的动作放在一个渲染周期内完成，从而呈现出更流畅的动画效果。比如，通过requestAnimationFrame()，JS动画能够和CSS动画/变换或SVG SMIL动画同步发生。另外，如果在一个浏览器标签页里运行一个动画，当这个标签页不可见时，浏览器会暂停它，这会减少CPU，内存的压力，节省电池电量。
 ```js
@@ -223,6 +206,23 @@ window.requestAnimFrame = (function(){
 // place the rAF *before* the render() to assure as close to
 // 60fps with the setTimeout fallback.
 ```
+ #### css3动画，transition和animation的区别，
+1.  触发条件不同。transition通常和hover等事件配合使用，由事件触发。animation则和gif动态图差不多，立即播放。
+2. 循环。 animation可以设定循环次数。 When triggered, a transition runs only once.You can make a transition loop by fiddling with the transitionEnd event, but that isn't particularly straightforward - especially when compared with animations.
+>What About transition: all?
+>You do not have to specify every property that you care about when using a transition. You could simplify your life by using the all value instead: transition: all .5s ease-in. I do not recommend this because you will take a performance hit. Your browser is now listening for a whole lotta properties as opposed to just a few that you know you will be modifiying. Unless you have a strong need to do this, I would recommend specifying each CSS property you wish to transition individually.
+
+3. 精确性。 animation可以设定每一帧的样式和时间。tranistion 只能设定头尾。 animation中可以设置每一帧需要单独变化的样式属性， transition中所有样式属性都要一起变化。
+4. 与javascript的交互。animation与js的交互不是很紧密。tranistion和js的结合更强大。js设定要变化的样式，transition负责动画效果。A transition only plays as a reaction to a CSS property that has changed
+
+[https://www.kirupa.com/snippets/move_element_to_click_position.htm](https://www.kirupa.com/snippets/move_element_to_click_position.htm)
+
+
+#### animation的属性，加速度，重力的模拟实现
+[https://blog.csdn.net/drd_zsd123/article/details/80126260](https://blog.csdn.net/drd_zsd123/article/details/80126260)
+[canvas实现](./canvas.html)
+
+
 #### 什么是“use strict”,好处和坏处
 优点：
 1. 消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为;
@@ -267,3 +267,54 @@ JS的API有哪些应用到了函数柯里化的实现？(bind函数和数组的r
  编写一个通用的事件监听函数
  八大排序算法
  websocket的工作原理和机制
+
+
+
+ #### ES5与ES6继承的区别
+ 1. ES5先创建子类的实例对象，再实例化父类并添加到子类this中（Parent.apply(this)）
+```js
+//在es5中的继承：
+function parent(a,b){
+    this a = a;
+    this b = b;
+}
+function child(c){
+    this c = c
+};
+
+parent.call(child,1,2)//通过子集去继承父级：
+//而去看call的底层方法可知，继承的过程是通过prototype属性,相当于
+child.prototype = new parent(1,2);
+
+```
+2. ES6是先创建父类的实例对象，在实例化子类中通过调用super方法访问父级后，再用子类的构造函数修改this。
+```js
+class parent{
+　　constructor(a,b){
+　　　　this.a = a;
+　　　　this.b = b;
+　　}
+　　parentMethods(){
+　　　　return this.a + this.b
+　　}
+}
+class child extends parent{
+　　constructor(a,b,c){
+　　　　super(a,b);
+　　　　this.c = c;
+　　}
+　　childMethods(){
+　　　　return this.c + ',' + super.parentMethods()
+　　}
+}
+const point = new child(1,2,3);
+alert(point.childMethods());
+```
+子类必须在constructor方法中调用super方法，否则新建实例报错。因为子类没有自己的this对象，而是继承了父类的this对象，然后对其进行加工。如果不调用super方法，子类得不到this对象。
+
+#### module.exports和exports区别
+1. module.exports 初始值为一个空对象 {}
+2. exports 是指向的 module.exports 的引用
+3. require() 返回的是 module.exports 而不是 exports
+
+exports是引用 module.exports**的值**。module.exports 被改变的时候，exports不会被改变

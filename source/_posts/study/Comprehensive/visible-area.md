@@ -1,5 +1,5 @@
 ---
-title: 尺寸
+title: HTML元素定位
 date:   2018/7/12
 categories: 
     - 学习
@@ -9,19 +9,6 @@ tags:
 ---
  getBoundingClientRect() 获取它相对于视图窗口的坐标
 ## HTML元素精准定位
-``scrollHeight``: 对象的滚动高度。 
-
-``scrollLeft``:对象左边界和窗口中目前可见内容的最左端之间的距离
-
-``scrollTop``:对象最顶端和窗口中可见内容的最顶端之间的距离 
-
-``scrollWidth``:获取对象的滚动宽度
-
-``offsetHeight``:获取对象相对于版面或由父坐标 offsetParent 属性指定的父坐标的高度 
-
-``offsetLeft``:获取对象相对于版面或由 offsetParent 属性指定的父坐标的计算左侧位置 
-
-``offsetTop``:获取对象相对于版面或由 offsetTop 属性指定的父坐标的计算顶端位置 
 
 ``event.clientX`` 相对文档的水平座标 
 
@@ -31,37 +18,9 @@ tags:
 
 ``event.offsetY`` 相对容器的垂直坐标 
 
-``document.documentElement.scrollTop`` 垂直方向滚动的值 
-
-``event.clientX+document.documentElement.scrollTop`` 相对文档的水平座标+垂直方向滚动的量
-
-这里是JavaScript中建造迁移转变代码的常用属性
-
-页可见区域宽： ``document.body.clientWidth``;
-
-网页可见区域高： ``document.body.clientHeight``;
-
-网页可见区域宽： ``document.body.offsetWidth ``  （包含边线的宽）;
-
-网页可见区域高： ``document.body.offsetHeight`` （包含边线的宽）;
-
-网页正文全文宽： ``document.body.scrollWidth``;
-
-网页正文全文高： ``document.body.scrollHeight``;
-
-网页被卷去的高： ``document.body.scrollTop``;
-
-网页被卷去的左： ``document.body.scrollLeft``;
-
 网页正文项目组上： ``window.screenTop``;
 
 网页正文项目组左： ``window.screenLeft``;
-
-屏幕辨别率的高： ``window.screen.height``;
-
-屏幕辨别率的宽： ``window.screen.width``;
-
-屏幕可用工作区高度： ``window.screen.availHeight``;
 
 {% asset_img element-position.gif %}
 {% asset_img pic2.jpg %}
@@ -73,7 +32,8 @@ offset包括border,client不包括border
 
 document.documentElement / body要做兼容
 
-## 如何获取元素的精确位置
+## 如何获取元素相对于整个网页的精确位置
+**el.offsetLeft + el.clientLeft - el.scrollLeft**
 ```js
 // Helper function to get an element's exact position
 function getPosition(el) {
@@ -102,7 +62,40 @@ function getPosition(el) {
   };
 }
 ```
-
+## 判断元素是否在某个容器里的可视区域
+**el.offsetLeft + el.clientLeft**
+```js
+/**
+ * el 查询元素
+ * scrollParent el最近的可滚动祖先节点
+ * offset 预留的预加载距离
+*/
+const checkInView=(el,scrollParent,offset)=>{
+    let scrollTop,clientH,clientW,scrollLeft;
+    let offsetTop=0,offsetLeft=0;
+    if(scrollParent === window) {
+        scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
+        scrollLeft=document.documentElement.scrollLeft||document.body.scrollLeft;
+        clientH=document.documentElement.clientHeight||document.body.clientHeight;
+        clientW=document.documentElement.clientWidth||document.body.clientWidth;
+    }
+    else {
+        scrollTop = scrollParent.scrollTop;
+        scrollLeft=scrollParent.scrollLeft;
+        clientH = scrollParent.clientHeight;
+        clientW=scrollParent.clientWidth;
+    }
+    while(el!=scrollParent && el!=null){
+        offsetTop+=el.offsetTop+el.clientTop;
+        offsetLeft+=el.offsetLeft+el.clientLeft;
+        el=el.offsetParent;
+    }
+    if(scrollTop+clientH>offsetTop-offset && scrollLeft+clientW>offsetLeft-offset){
+        return true;
+    }
+    else return false;
+}
+```
 
 
 ## screen对象
@@ -113,6 +106,9 @@ function getPosition(el) {
 
 * ``screen.availHeight`` 属性返回访问者屏幕的高度，以像素计，减去界面特性，比如任务栏。
 
+屏幕辨别率的高： ``window.screen.height``;
+
+屏幕辨别率的宽： ``window.screen.width``;
 
 
 ## 浏览器窗口可视区域大小clientHeight
@@ -151,10 +147,8 @@ scrollHeight 是网页内容实际高度，可以小于 clientHeight。
 scrollHeight 是网页内容高度，不过最小值是 clientHeight。也就是说网页内容实际高度小于 clientHeight 时，scrollHeight 返回 clientHeight 。
 #### 三、浏览器兼容性
 ```javascript
-var w=document.documentElement.scrollWidth
-   || document.body.scrollWidth;
-var h=document.documentElement.scrollHeight
-   || document.body.scrollHeight;
+var w=document.documentElement.scrollWidth|| document.body.scrollWidth;
+var h=document.documentElement.scrollHeight|| document.body.scrollHeight;
 ```
 
 ``scrollHeight``和``scrollWidth``还可获取Dom元素中内容实际占用的高度和宽度。
@@ -165,10 +159,8 @@ var h=document.documentElement.scrollHeight
 ``offsetHeight = clientHeight + 滚动条 + 边框。``
 #### 二、浏览器兼容性
 ```javascript
-var w= document.documentElement.offsetWidth
-    || document.body.offsetWidth;
-var h= document.documentElement.offsetHeight
-    || document.body.offsetHeight;
+var w= document.documentElement.offsetWidth || document.body.offsetWidth;
+var h= document.documentElement.offsetHeight|| document.body.offsetHeight;
 ```
 
 ## 网页卷去的距离与偏移量
