@@ -241,35 +241,6 @@ window.requestAnimFrame = (function(){
 [https://www.cnblogs.com/flyromance/p/5042187.html](https://www.cnblogs.com/flyromance/p/5042187.html)
 
 
-
- JS如何实现重载和多态
-轮播图的实现，以及轮播图组件开发，轮播10000张图片过程 
-
-document load和document DOMContentLoaded两个事件的区别
-
-
-常用的数组api，字符串api
-原生事件绑定（跨浏览器），dom0和dom2的区别？
-
-
-web端cookie的设置和获取
-setTimeout和promise的执行顺序
-
-navigator对象，location和history
-
-手指点击可以触控的屏幕时，是什么事件？
-JS的API有哪些应用到了函数柯里化的实现？(bind函数和数组的reduce方法用到了函数柯里化。)
-
-
- 手写Ajax，XMLHttpRequest
- 实现继承的多种方式和优缺点
- 深拷贝
- 编写一个通用的事件监听函数
- 八大排序算法
- websocket的工作原理和机制
-
-
-
  #### ES5与ES6继承的区别
  1. ES5先创建子类的实例对象，再实例化父类并添加到子类this中（Parent.apply(this)）
 ```js
@@ -318,3 +289,33 @@ alert(point.childMethods());
 3. require() 返回的是 module.exports 而不是 exports
 
 exports是引用 module.exports**的值**。module.exports 被改变的时候，exports不会被改变
+
+
+
+
+
+ JS如何实现重载和多态
+轮播图的实现，以及轮播图组件开发，轮播10000张图片过程 
+
+document load和document DOMContentLoaded两个事件的区别
+
+
+常用的数组api，字符串api
+原生事件绑定（跨浏览器），dom0和dom2的区别？
+
+
+web端cookie的设置和获取
+setTimeout和promise的执行顺序
+
+navigator对象，location和history
+
+手指点击可以触控的屏幕时，是什么事件？
+JS的API有哪些应用到了函数柯里化的实现？(bind函数和数组的reduce方法用到了函数柯里化。)
+
+
+ 手写Ajax，XMLHttpRequest
+ 实现继承的多种方式和优缺点
+ 深拷贝
+ 编写一个通用的事件监听函数
+ 八大排序算法
+ websocket的工作原理和机制
