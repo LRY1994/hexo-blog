@@ -817,6 +817,16 @@ idbRequest.onerror=function(event){
 	alert(event.target.errorCode);
 }
 ```
+### Object.create
+```js
+var objectCreate = function(arg){
+    if(!arg){ return {}};
+    function obj(){};
+    obj.prototype = arg;
+    return new obj();
+}
+Object.create = Object.create||objectCreate;
+```
 ## 手写typeof
 
  ```javascript
