@@ -30,20 +30,3 @@ await/async 要用for-of
 在 build/utils.js 中的 ExtractTextPlugin.extract 传入参数 publicPath: '../../'
 
 
-### IE的css不可超过250k
-```js
-optimization: {
-    minimizer: [
-        new CSSSplitWebpackPlugin({
-            size: 3800,
-            filename: path.posix.join(assetsDir,'css/[name]-[part].[ext]'),
-            }),  
-        new OptimizeCSSAssetsPlugin({
-            assetNameRegExp: /\.css$/g,
-            cssProcessor: require('cssnano'),
-            cssProcessorOptions: { discardComments: {removeAll: true },reduceIdents:false },
-            canPrint: true
-        }),             
-    ]
-}
-```
