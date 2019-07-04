@@ -3,7 +3,8 @@ title: 2018-6总结
 date:   2018/6/1
 categories: 
     - 学习
-    - 每月总结
+tags:
+    - 日常记录 
 ---
 
 ### await/async最佳实践

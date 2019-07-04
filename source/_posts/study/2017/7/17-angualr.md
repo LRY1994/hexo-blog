@@ -4,9 +4,8 @@ title:  "读《AngularJS深度剖析与最佳实践》"
 date:   2017/7/17 
 categories: 
     - 学习 
-    - 读书笔记
 tags:
-    - AngularJS1
+    -  读书笔记
 ---
 
 ![cover](/images/book/angualr-deep-analysics.png)

@@ -3,7 +3,8 @@ title: scss笔记
 date:  2019/2/28
 categories: 
     - 学习
-    - 专题笔记 
+tags:
+    - 日常记录     
 ---
 
 ### 嵌套CSS 规则

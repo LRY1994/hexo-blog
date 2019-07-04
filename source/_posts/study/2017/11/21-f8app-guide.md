@@ -4,9 +4,9 @@ title:  "f8app在window安装教程"
 date:   2017/11/21 
 categories: 
     - 学习 
-    - 专题笔记
+     
 tags:
-    - react-native 
+    - 专题探究 
 ---
 
 md写图片还要上传图床，太懒了

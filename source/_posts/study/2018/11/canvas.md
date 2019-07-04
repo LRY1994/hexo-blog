@@ -3,7 +3,8 @@ title: canvas
 date:   2018/11/18
 categories: 
     - 学习
-    - 专题笔记 
+tags:
+    - 日常记录
 ---
 
 canvas默认是宽300px,高150px,即``<canvas width="300" height="150">``

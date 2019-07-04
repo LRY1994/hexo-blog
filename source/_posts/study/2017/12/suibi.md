@@ -3,7 +3,8 @@ title: 2017-12总结
 date:   2017/12/1
 categories: 
     - 学习 
-    - 每月总结
+tags:
+    - 日常记录
 ---
 
 * 昨晚在公司的OA系统提交账务报销的时候，发现保存老是保存不了，看了控制台，console出现了错误，OA是以前的老系统，用原生的js写的。具   体原因是 document.getElementById(xx)取不到值。（我的OA只能用IE打开==）

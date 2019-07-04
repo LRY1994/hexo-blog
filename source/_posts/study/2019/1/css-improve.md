@@ -3,7 +3,8 @@ title: 关于css打包后过大的问题
 date:  2019/1/15
 categories: 
     - 学习
-    - 专题笔记 
+tags:
+    - 专题探究
 ---
 
 ### 公共代码多次放在scoped内

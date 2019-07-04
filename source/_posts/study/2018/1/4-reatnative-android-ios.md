@@ -4,9 +4,9 @@ title:  "reat-native在Android和IOS平台的区别"
 date:   2018/1/30 
 categories: 
     - 学习
-    - 读书笔记
+    - 
 tags:
-    - reat-native
+    - 读书笔记
 ---
 
 读《React-Native跨平台移动应用开发第2版》

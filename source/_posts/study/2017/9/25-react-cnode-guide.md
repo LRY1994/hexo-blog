@@ -4,9 +4,8 @@ title:  "react-cnode实践笔记"
 date:   2017/9/25 
 categories: 
     - 学习 
-    - 专题笔记
 tags:
-    - react
+    - 专题探究
 ---
 
 参照源码

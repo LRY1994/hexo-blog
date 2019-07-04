@@ -3,9 +3,8 @@ title: HTML元素定位
 date:   2018/7/12
 categories: 
     - 学习
-    - 专题笔记 
 tags:
-    - 面试
+    - 日常记录
 ---
  getBoundingClientRect() 获取它相对于视图窗口的坐标
 ## HTML元素精准定位

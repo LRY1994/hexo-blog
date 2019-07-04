@@ -3,7 +3,8 @@ title: 2018.10-2018.11总结
 date:   2018/10/18
 categories: 
     - 学习
-    - 每月总结 
+tags:
+    - 日常记录 
 ---
 webpack-dev-server启动并不是访问vue项目内某个文件, src/assets内的文件是不能在index.html直接引用的, 必须经过loader处理路径
 

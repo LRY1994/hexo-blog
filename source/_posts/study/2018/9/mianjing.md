@@ -1,11 +1,10 @@
 ---
 title: 面经收集--HTML+CSS+JS
-date:   2018/10/8
+date:   2018/9/8
 categories: 
     - 学习
-    - 专题笔记 
 tags:
-    - 面试
+    - 面经
 ---
 [https://segmentfault.com/a/1190000011635556?utm_source=tag-newest](https://segmentfault.com/a/1190000011635556?utm_source=tag-newest)
 #### 本质上说，XHTML是一个过渡技术，结合了XML(有几分)的强大功能及HTML(大多数)的简单特性。

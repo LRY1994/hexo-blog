@@ -4,9 +4,9 @@ title:  "《Web 全栈工程师的自我修养》读书笔记"
 date:   2018/1/30 
 categories: 
     - 学习
-    - 读书笔记
+    - 
 tags:
-    - 前端优化
+    - 读书笔记
 ---
 ![cover](/images/book/web-full-stack-self-cultivation.jpg)
 ## 减少同一域名下的HTTP请求数

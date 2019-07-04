@@ -1,11 +1,10 @@
 ---
 title: 面经收集--网络/浏览器/模块化/diff原理
-date:   2018/10/10
+date:   2018/9/10
 categories: 
     - 学习
-    - 专题笔记 
 tags:
-    - 面试
+    - 面经
 ---
 [https://segmentfault.com/a/1190000011635556?utm_source=tag-newest](https://segmentfault.com/a/1190000011635556?utm_source=tag-newest)
 

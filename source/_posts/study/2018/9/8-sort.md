@@ -1,11 +1,10 @@
 ---
 title: 八大排序算法、KMP
-date:   2018/10/8
+date:   2018/9/8
 categories: 
     - 学习
-    - 专题笔记 
 tags:
-    - 面试
+    - 面经
 ---
  {%asset_img 8-sort.png%}
 

@@ -3,7 +3,8 @@ title: 2018.12-2019.1总结
 date:   2018/12/17
 categories: 
     - 学习
-    - 每月总结 
+tags:
+    - 日常记录 
 ---
 ### for\for-in\for-each\for-of
 for-in不仅可以遍历数组还可以遍历对象

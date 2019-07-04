@@ -1,13 +1,11 @@
 ---
-title: js题摘录
+title: js题摘录（柯里化、栈队列）
 date:   2018/5/5
+
 categories: 
     - 学习
-    - 专题笔记 
 tags:
-    - 面试
-    - 柯里化
-    - 栈队列
+    - 面经
 ---
 
 [44个Javascript变态题解析](https://blog.csdn.net/ceshi986745/article/details/51698893)

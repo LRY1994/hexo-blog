@@ -3,9 +3,8 @@ title: 读《Learning Javascript Design Patterns》 -Addy Osmani
 date:   2018/10/18
 categories: 
     - 学习
-    - 专题笔记 
 tags:
-    - 设计模式
+    - 读书笔记
 ---
 
 

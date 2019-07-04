@@ -3,7 +3,8 @@ title: 库文件太大，webpack打包时怎么办
 date:   2018/9/3
 categories: 
     - 学习
-    - 专题笔记
+tags:
+    - 专题探究
 ---
 
 针对上篇gojs太大的问题的衍生出大文件打包的问题

@@ -3,7 +3,8 @@ title: vue中使用gojs/jointjs
 date:   2018/8/23
 categories: 
     - 学习
-    - 专题笔记
+tags:
+    - 专题探究
 ---
 
 因为公司项目需求，要画出相关业务的流程图，以便客户了解自己身处何处

@@ -3,7 +3,8 @@ title: 2018-7至2018-9总结
 date:   2018/7/4
 categories: 
     - 学习
-    - 每月总结
+tags:
+    - 日常记录 
 ---
 ### 社交分享接口
 qzone       : 'http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url={{URL}}&title={{TITLE}}&desc={{DESCRIPTION}}&summary={{SUMMARY}}&site={{SOURCE}}',

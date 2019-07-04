@@ -3,9 +3,8 @@ title: 面试题摘录
 date:   2018/5/5
 categories: 
     - 学习
-    - 专题笔记 
 tags:
-    - 面试
+    - 面经
 ---
 
 
