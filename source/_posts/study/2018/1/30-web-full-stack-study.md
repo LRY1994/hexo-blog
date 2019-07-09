@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "《Web 全栈工程师的自我修养》读书笔记"
+title:  "读《Web 全栈工程师的自我修养》"
 date:   2018/1/30 
 categories: 
     - 学习

